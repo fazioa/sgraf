@@ -1,8 +1,11 @@
 ﻿Imports System.IO
+Imports System.Drawing.Imaging
+Imports System.Text
 
 Public Class userControlImg
 
     Private _imageTmb As Image
+    Private DateTime = &H132 '306
 
     Sub New(image As Image, p2 As String)
         InitializeComponent()
@@ -34,11 +37,32 @@ Public Class userControlImg
         imagTmbHeight = image.PhysicalDimension.Height
 
         'LETTURA DATI EXIF
-
+        'Get the PropertyItems property from image
+        Dim Str_pic_time As String
+        Dim sProperty As String
+        Dim count As Integer = 0
         Dim propItems As Imaging.PropertyItem() = image.PropertyItems()
-        propItems.GET
-        pic_time = image.GetPropertyItem(DateTime)
 
+        Dim encoding As New System.Text.ASCIIEncoding()
+
+        For Each propItem In propItems
+            Str_pic_time = "Property Item " & count.ToString()
+            Str_pic_time = Str_pic_time & "   iD: 0x" & propItem.Id.ToString("x")
+            Str_pic_time = Str_pic_time & "   type: " & propItem.Type.ToString()
+            Str_pic_time = Str_pic_time & "   length: " & propItem.Len.ToString() & " bytes"
+            'Convert the value of the second property to a string, and display it.
+
+            sProperty = encoding.GetString(propItems(count).Value)
+
+
+           
+            count += 1
+        Next propItem
+
+
+        LabelEXIF.Text = encoding.GetString(propItems(2).Value)
+        LabelEXIF.Text = LabelEXIF.Text & encoding.GetString(propItems(3).Value)
+        LabelEXIF.Text = LabelEXIF.Text & encoding.GetString(propItems(9).Value)
 
         leggiContenuto(LinkLabelNomeFile.Text, TextBoxTag)
 
@@ -73,8 +97,8 @@ Public Class userControlImg
     Private Sub leggiContenuto(sNomeFile As String, textBox As TextBox)
         Try
             Dim file As New StreamReader(sNomeFile & ".txt")
-        textBox.Text = file.ReadToEnd
-        file.Close()
+            textBox.Text = file.ReadToEnd
+            file.Close()
         Catch ex As Exception
 
         End Try
