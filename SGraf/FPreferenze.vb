@@ -21,4 +21,5 @@
     Private Sub ComboBox1_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBoxTipoFascicolo.SelectedIndexChanged
         ' My.Settings.tipoFascicolo = DirectCast(ComboBoxTipoFascicolo.SelectedItem, String)
     End Sub
+
 End Class

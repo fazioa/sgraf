@@ -39,7 +39,7 @@ Partial Class userControlImg
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.PictureBox1.ErrorImage = Nothing
         Me.PictureBox1.InitialImage = Nothing
-        Me.PictureBox1.Location = New System.Drawing.Point(32, 3)
+        Me.PictureBox1.Location = New System.Drawing.Point(29, 3)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(171, 135)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -50,7 +50,7 @@ Partial Class userControlImg
         '
         Me.TextBoxTag.BackColor = System.Drawing.Color.WhiteSmoke
         Me.TextBoxTag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBoxTag.Location = New System.Drawing.Point(32, 170)
+        Me.TextBoxTag.Location = New System.Drawing.Point(29, 170)
         Me.TextBoxTag.Multiline = True
         Me.TextBoxTag.Name = "TextBoxTag"
         Me.TextBoxTag.Size = New System.Drawing.Size(171, 54)
@@ -81,7 +81,8 @@ Partial Class userControlImg
         '
         Me.LabelEXIF.AutoSize = True
         Me.LabelEXIF.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEXIF.Location = New System.Drawing.Point(3, 13)
+        Me.LabelEXIF.Location = New System.Drawing.Point(3, 14)
+        Me.LabelEXIF.Margin = New System.Windows.Forms.Padding(3, 1, 3, 0)
         Me.LabelEXIF.Name = "LabelEXIF"
         Me.LabelEXIF.Size = New System.Drawing.Size(40, 9)
         Me.LabelEXIF.TabIndex = 7
@@ -92,7 +93,7 @@ Partial Class userControlImg
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabelNomeFile)
         Me.FlowLayoutPanel1.Controls.Add(Me.LabelEXIF)
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(32, 138)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(29, 138)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(171, 32)
         Me.FlowLayoutPanel1.TabIndex = 8
@@ -106,7 +107,7 @@ Partial Class userControlImg
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.LabelNumeroFoto)
         Me.Name = "userControlImg"
-        Me.Size = New System.Drawing.Size(216, 224)
+        Me.Size = New System.Drawing.Size(211, 224)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.PerformLayout()

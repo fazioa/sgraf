@@ -114,6 +114,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings.vb" />
     <Compile Include="userControlImg.Designer.vb">
       <DependentUpon>userControlImg.vb</DependentUpon>
     </Compile>

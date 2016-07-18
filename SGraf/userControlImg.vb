@@ -234,7 +234,7 @@ Public Class userControlImg
     Private sISO As String
     Private sEsposizione As String
     Private sDiaframma As String
-    Private bFlash As Boolean
+    Private sFlash As String
 
 
 
@@ -277,23 +277,30 @@ Public Class userControlImg
         Dim pic_data As PropertyItem
         ' pic_data = image.GetPropertyItem(ExifProperty.Title)
         ' sTitolo = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+        Try
+            pic_data = image.GetPropertyItem(ExifProperty.Equip_Make)
+            sMarca = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+        Catch ex As Exception
+        End Try
 
-        pic_data = image.GetPropertyItem(ExifProperty.Equip_Make)
-        sMarca = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
-
-        pic_data = image.GetPropertyItem(ExifProperty.Equip_Model)
-        sModello = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
-
-        pic_data = image.GetPropertyItem(ExifProperty.Date_Time)
-        sDataScatto = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
-        Dim time As DateTime
-        Dim sData As String = sDataScatto.Substring(0, 10)
-        Dim sArrayData As String() = sData.Split(":")
-        Dim sOra As String = sDataScatto.Substring(11, 8)
-        Dim sArrayOra As String() = sOra.Split(":")
-        time = New DateTime(CType(sArrayData(0), Integer), CType(sArrayData(1), Integer), CType(sArrayData(2), Integer), CType(sArrayOra(0), Integer), CType(sArrayOra(1), Integer), CType(sArrayOra(2), Integer))
-        Dim format As String = "dd/MMM/yyyy HH:mm"
-        sDataScatto = time.ToString(format)
+        Try
+            pic_data = image.GetPropertyItem(ExifProperty.Equip_Model)
+            sModello = " " & System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+        Catch ex As Exception
+        End Try
+        Try
+            pic_data = image.GetPropertyItem(ExifProperty.Date_Time)
+            sDataScatto = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+            Dim time As DateTime
+            Dim sData As String = sDataScatto.Substring(0, 10)
+            Dim sArrayData As String() = sData.Split(":")
+            Dim sOra As String = sDataScatto.Substring(11, 8)
+            Dim sArrayOra As String() = sOra.Split(":")
+            time = New DateTime(CType(sArrayData(0), Integer), CType(sArrayData(1), Integer), CType(sArrayData(2), Integer), CType(sArrayOra(0), Integer), CType(sArrayOra(1), Integer), CType(sArrayOra(2), Integer))
+            Dim format As String = "dd/MMM/yyyy HH:mm"
+            sDataScatto = ", " & time.ToString(format)
+        Catch ex As Exception
+        End Try
 
         Dim a, b As UShort
         Try
@@ -301,7 +308,7 @@ Public Class userControlImg
 
             a = BitConverter.ToUInt16(pic_data.Value, 0)
             b = BitConverter.ToUInt16(pic_data.Value, 4)
-            sEsposizione = "1/" & 1 / (a / b) & " sec"
+            sEsposizione = ", 1/" & 1 / (a / b) & " sec"
         Catch ex As Exception
         End Try
 
@@ -309,19 +316,51 @@ Public Class userControlImg
             pic_data = image.GetPropertyItem(ExifProperty.F_Number)
             a = BitConverter.ToUInt16(pic_data.Value, 0)
             b = BitConverter.ToUInt16(pic_data.Value, 4)
-            sDiaframma = "f/" & a / b
+            sDiaframma = ", f/" & a / b
         Catch ex As Exception
         End Try
 
         Try
             pic_data = image.GetPropertyItem(ExifProperty.ISO_Speed)
             a = BitConverter.ToUInt16(pic_data.Value, 0)
-            sISO = "ISO " & a
+            sISO = ", ISO " & a
         Catch ex As Exception
         End Try
 
-        LabelEXIF.Text = sDataScatto & " - " & sEsposizione & ", " & sDiaframma & ", " & sISO
+        Try
+            pic_data = image.GetPropertyItem(ExifProperty.Flash)
+            a = BitConverter.ToUInt16(pic_data.Value, 0)
+            Dim ba As New BitArray({a})
+            If (ba.Get(0)) Then
+                sFlash = ", Flash on"
+            Else
+                sFlash = ", Flash off"
+            End If
 
+        Catch ex As Exception
+        End Try
+        LabelEXIF.Text = ""
+        If My.Settings.bEXIFMarca Then
+            LabelEXIF.Text = LabelEXIF.Text & sMarca
+        End If
+        If My.Settings.bEXIFModello Then
+            LabelEXIF.Text = LabelEXIF.Text & sModello
+        End If
+        If My.Settings.bEXIFDataOra Then
+            LabelEXIF.Text = LabelEXIF.Text & sDataScatto
+        End If
+        If My.Settings.bEXIFEsposizione Then
+            LabelEXIF.Text = LabelEXIF.Text & sEsposizione
+        End If
+        If My.Settings.bEXIFDiaframma Then
+            LabelEXIF.Text = LabelEXIF.Text & sDiaframma
+        End If
+        If My.Settings.bEXIFISO Then
+            LabelEXIF.Text = LabelEXIF.Text & sISO
+        End If
+        If My.Settings.bEXIFFlash Then
+            LabelEXIF.Text = LabelEXIF.Text & sFlash
+        End If
         leggiContenuto(LinkLabelNomeFile.Text, TextBoxTag)
 
     End Sub
