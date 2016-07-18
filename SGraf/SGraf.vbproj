@@ -124,6 +124,7 @@
   <ItemGroup>
     <EmbeddedResource Include="FAboutBox1.resx">
       <DependentUpon>FAboutBox1.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>

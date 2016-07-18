@@ -80,9 +80,10 @@ Partial Class userControlImg
         'LabelEXIF
         '
         Me.LabelEXIF.AutoSize = True
+        Me.LabelEXIF.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelEXIF.Location = New System.Drawing.Point(3, 13)
         Me.LabelEXIF.Name = "LabelEXIF"
-        Me.LabelEXIF.Size = New System.Drawing.Size(56, 13)
+        Me.LabelEXIF.Size = New System.Drawing.Size(40, 9)
         Me.LabelEXIF.TabIndex = 7
         Me.LabelEXIF.Text = "LabelEXIF"
         '
