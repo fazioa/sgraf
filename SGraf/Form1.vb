@@ -3,10 +3,6 @@
 
 Public Class Form1
 
-  
-
-    
-
     Private Sub PopolaImmagini(arrayFileNames As String())
         '   lvwImmagini.Items.Clear()
         Dim i As Integer = 0
@@ -26,6 +22,7 @@ Public Class Form1
         Next
         For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
             AddHandler child.PictureBox1.MouseDown, AddressOf childs_MouseDown
+
             child.LabelNumeroFoto.Text = FlowLayoutPanel1.Controls.GetChildIndex(child) + 1
         Next
     End Sub
@@ -46,6 +43,13 @@ Public Class Form1
     Dim dragtype As Type
 
     Private Sub childs_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
+        If e.Clicks = 1 Then
+            Dim source As userControlImg = CType(sender.parent, userControlImg)
+            source.selected = Not source.selected
+            Me.Refresh()
+        End If
+
+
         If e.Button = Windows.Forms.MouseButtons.Left Then
             Dim source As userControlImg = CType(sender.parent, userControlImg)
             Using bmp As New Bitmap(source.Width, source.Height)
@@ -84,8 +88,6 @@ Public Class Form1
 
     End Sub
 
-
-
     Private Sub FlowLayoutPanel1_DragEnter(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles FlowLayoutPanel1.DragEnter
         If e.AllowedEffect = DragDropEffects.Move AndAlso e.Data.GetDataPresent(dragtype) Then
             e.Effect = DragDropEffects.Move
@@ -102,9 +104,6 @@ Public Class Form1
         Next
     End Sub
 
- 
-
-
     Private Sub FlowLayoutPanel1_Click(sender As System.Object, e As System.EventArgs) Handles FlowLayoutPanel1.Click
         sender.focus()
     End Sub
@@ -117,10 +116,6 @@ Public Class Form1
 
     Private Sub SvuotaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SvuotaToolStripMenuItem.Click
         FlowLayoutPanel1.Controls.Clear()
-    End Sub
-
-    Private Sub ButtonGenera_Click(sender As System.Object, e As System.EventArgs)
-
     End Sub
 
     Private Sub OpzioniToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpzioniToolStripMenuItem.Click
@@ -163,13 +158,4 @@ Public Class Form1
         form.ShowDialog()
     End Sub
 
-    Private Sub FlowLayoutPanel1_DoubleClick(sender As System.Object, e As System.EventArgs) Handles FlowLayoutPanel1.DoubleClick
-        Try
-            Dim controllo As userControlImg = sender
-            Process.Start(controllo.sNomeFile)
-        Catch ex As Exception
-
-        End Try
-        
-    End Sub
 End Class

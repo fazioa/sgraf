@@ -237,6 +237,24 @@ Public Class userControlImg
     Private sFlash As String
 
 
+    Private isSelected As Boolean = False
+    Public Property selected() As Boolean
+        Get
+            Return isSelected
+        End Get
+        Set(ByVal value As Boolean)
+            isSelected = value
+            If isSelected Then
+                Me.BackColor = Color.Azure
+
+            Else
+                Me.BackColor = Color.Empty
+
+            End If
+
+
+        End Set
+    End Property
 
     Sub New(image As Image, p2 As String)
         InitializeComponent()
@@ -411,5 +429,20 @@ Public Class userControlImg
     Private Sub clickFoto(sLink As String)
         Process.Start(sLink)
     End Sub
+
+
+
+
+    Private Sub userControlImg_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'For Each ctrl As Control In Me.Controls
+        '    AddHandler ctrl.Click, AddressOf Me.Me_Click
+        'Next ctrl
+
+        'AddHandler Me.MouseDown, AddressOf Me.Me_Click
+    End Sub
+
+    '  Private Sub Me_Click(sender As Object, e As EventArgs)
+    '
+    ' End Sub
 
 End Class
