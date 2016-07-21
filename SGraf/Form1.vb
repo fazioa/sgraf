@@ -158,4 +158,16 @@ Public Class Form1
         form.ShowDialog()
     End Sub
 
+    Private Sub FlowLayoutPanel1_PreviewKeyDown(sender As System.Object, e As System.Windows.Forms.PreviewKeyDownEventArgs) Handles FlowLayoutPanel1.PreviewKeyDown
+        If e.KeyCode = Keys.Delete Then
+            
+            For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
+                If child.selected Then
+                    MsgBox("Rimosso " & child.sNomeFile)
+                    Me.FlowLayoutPanel1.Controls.Remove(child)
+                End If
+            Next
+
+        End If
+    End Sub
 End Class
