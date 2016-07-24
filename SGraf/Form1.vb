@@ -43,48 +43,45 @@ Public Class Form1
     Dim dragtype As Type
 
     Private Sub childs_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
+         occorre distinguere tra drag&drop e click
         If e.Clicks = 1 Then
             Dim source As userControlImg = CType(sender.parent, userControlImg)
             source.selected = Not source.selected
             Me.Refresh()
-        End If
+        Else
 
 
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Dim source As userControlImg = CType(sender.parent, userControlImg)
-            Using bmp As New Bitmap(source.Width, source.Height)
-                source.DrawToBitmap(bmp, New Rectangle(Point.Empty, source.Size))
-                Me.dragcursor = New Cursor(bmp.GetHicon)
-            End Using
+            If e.Button = Windows.Forms.MouseButtons.Left Then
+                Dim source As userControlImg = CType(sender.parent, userControlImg)
+                Using bmp As New Bitmap(source.Width, source.Height)
+                    source.DrawToBitmap(bmp, New Rectangle(Point.Empty, source.Size))
+                    Me.dragcursor = New Cursor(bmp.GetHicon)
+                End Using
 
-            Me.dragtype = source.GetType
-            Me.DoDragDrop(source, DragDropEffects.Move)
-            Me.dragcursor.Dispose()
+                Me.dragtype = source.GetType
+                Me.DoDragDrop(source, DragDropEffects.Move)
+                Me.dragcursor.Dispose()
+            End If
         End If
     End Sub
 
     Private Sub FlowLayoutPanel1_DragDrop(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles FlowLayoutPanel1.DragDrop
-
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-
             'AGGIUNGE IMMAGINE
             Dim filePaths As String() = CType(e.Data.GetData(DataFormats.FileDrop), String())
             ' For Each filePath As String In filePaths
             PopolaImmagini(filePaths)
             'Next
         Else
-
             'MUOVE IMMAGINE
             Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
             Dim target As userControlImg = Me.FlowLayoutPanel1.GetChildAtPoint(Me.FlowLayoutPanel1.PointToClient(New Point(e.X, e.Y)))
             If target IsNot Nothing Then
                 Dim ix As Integer = Me.FlowLayoutPanel1.Controls.GetChildIndex(target)
                 Me.FlowLayoutPanel1.Controls.SetChildIndex(source, ix)
+                renumber()
             End If
-
         End If
-
-        renumber()
 
     End Sub
 
@@ -103,13 +100,17 @@ Public Class Form1
             child.LabelNumeroFoto.Text = FlowLayoutPanel1.Controls.GetChildIndex(child) + 1
         Next
     End Sub
+    Private Sub clearSelected()
+        For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
+            child.selected = False
+        Next
+    End Sub
 
     Private Sub FlowLayoutPanel1_Click(sender As System.Object, e As System.EventArgs) Handles FlowLayoutPanel1.Click
         sender.focus()
     End Sub
 
     Private Sub ApriToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ApriToolStripMenuItem.Click
-        ' Dim result = FolderBrowserDialog1.ShowDialog()
         Dim result = OpenFileDialog1.ShowDialog()
         PopolaImmagini(OpenFileDialog1.FileNames)
     End Sub
@@ -160,14 +161,19 @@ Public Class Form1
 
     Private Sub FlowLayoutPanel1_PreviewKeyDown(sender As System.Object, e As System.Windows.Forms.PreviewKeyDownEventArgs) Handles FlowLayoutPanel1.PreviewKeyDown
         If e.KeyCode = Keys.Delete Then
-            
-            For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
-                If child.selected Then
-                    MsgBox("Rimosso " & child.sNomeFile)
-                    Me.FlowLayoutPanel1.Controls.Remove(child)
+            Dim index As Integer
+            Dim usrCtrl As userControlImg
+
+            For index = Me.FlowLayoutPanel1.Controls.Count - 1 To 0 Step -1
+                usrCtrl = FlowLayoutPanel1.Controls.Item(index)
+                If usrCtrl.selected Then
+                    Me.FlowLayoutPanel1.Controls.Remove(usrCtrl)
                 End If
             Next
-
+            renumber()
         End If
     End Sub
+
+
+
 End Class

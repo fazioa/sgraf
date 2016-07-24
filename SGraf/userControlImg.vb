@@ -245,14 +245,11 @@ Public Class userControlImg
         Set(ByVal value As Boolean)
             isSelected = value
             If isSelected Then
-                Me.BackColor = Color.Azure
-
+                Me.BackColor = Color.CadetBlue
+                Form1.FlowLayoutPanel1.Focus()
             Else
                 Me.BackColor = Color.Empty
-
             End If
-
-
         End Set
     End Property
 
