@@ -30,10 +30,10 @@ Public Class Form1
     Private Sub FlowLayoutPanel1_GiveFeedback(sender As System.Object, e As System.Windows.Forms.GiveFeedbackEventArgs) Handles FlowLayoutPanel1.GiveFeedback
 
         ' Set the custom cursor based upon the effect.
-        e.UseDefaultCursors = False
-        If ((e.Effect And DragDropEffects.Move) = DragDropEffects.Move) Then
-            Cursor.Current = Me.dragcursor
-        End If
+        ' e.UseDefaultCursors = False
+        '  If ((e.Effect And DragDropEffects.Move) = DragDropEffects.Move) Then
+        '  Cursor.Current = Me.dragcursor
+        '   End If
 
 
     End Sub
@@ -43,7 +43,7 @@ Public Class Form1
     Dim dragtype As Type
 
     Private Sub childs_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
-         occorre distinguere tra drag&drop e click
+        '  occorre distinguere tra drag&drop e click
         If e.Clicks = 1 Then
             Dim source As userControlImg = CType(sender.parent, userControlImg)
             source.selected = Not source.selected
@@ -104,10 +104,6 @@ Public Class Form1
         For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
             child.selected = False
         Next
-    End Sub
-
-    Private Sub FlowLayoutPanel1_Click(sender As System.Object, e As System.EventArgs) Handles FlowLayoutPanel1.Click
-        sender.focus()
     End Sub
 
     Private Sub ApriToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ApriToolStripMenuItem.Click
@@ -173,7 +169,6 @@ Public Class Form1
             renumber()
         End If
     End Sub
-
 
 
 End Class

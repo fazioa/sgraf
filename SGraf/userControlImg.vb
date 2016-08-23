@@ -227,6 +227,9 @@ End Enum
 Public Class userControlImg
 
     Private _imageTmb As Image
+
+    Private isSelected As Boolean = False
+
     Private sTitolo As String
     Private sMarca As String
     Private sModello As String
@@ -236,8 +239,76 @@ Public Class userControlImg
     Private sDiaframma As String
     Private sFlash As String
 
+    Public Property titolo As String
+        Get
+            Return sTitolo
+        End Get
+        Set(value As String)
+            sTitolo = value
+        End Set
+    End Property
 
-    Private isSelected As Boolean = False
+    Public Property marca As String
+        Get
+            Return sMarca
+        End Get
+        Set(value As String)
+            sMarca = value
+        End Set
+    End Property
+
+    Public Property modello As String
+        Get
+            Return sModello
+        End Get
+        Set(value As String)
+            sModello = value
+        End Set
+    End Property
+
+    Public Property ISO As String
+        Get
+            Return sISO
+        End Get
+        Set(value As String)
+            sISO = value
+        End Set
+    End Property
+    Public Property esposizione As String
+        Get
+            Return sEsposizione
+        End Get
+        Set(value As String)
+            sEsposizione = value
+        End Set
+    End Property
+    Public Property diaframma As String
+        Get
+            Return sDiaframma
+        End Get
+        Set(value As String)
+            sDiaframma = value
+        End Set
+    End Property
+
+    Public Property dataScatto As String
+        Get
+            Return sDataScatto
+        End Get
+        Set(value As String)
+            sDataScatto = value
+        End Set
+    End Property
+
+    Public Property flash As String
+        Get
+            Return sFlash
+        End Get
+        Set(value As String)
+            sFlash = value
+        End Set
+    End Property
+
     Public Property selected() As Boolean
         Get
             Return isSelected
@@ -290,17 +361,18 @@ Public Class userControlImg
         Dim encoding As New System.Text.ASCIIEncoding()
 
         Dim pic_data As PropertyItem
-        ' pic_data = image.GetPropertyItem(ExifProperty.Title)
-        ' sTitolo = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
         Try
             pic_data = image.GetPropertyItem(ExifProperty.Equip_Make)
             sMarca = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+            sMarca = sMarca.Trim()
+
         Catch ex As Exception
         End Try
 
         Try
             pic_data = image.GetPropertyItem(ExifProperty.Equip_Model)
-            sModello = " " & System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+            sModello = System.Text.Encoding.ASCII.GetString(pic_data.Value, 0, pic_data.Len - 1)
+            sModello = sModello.Trim
         Catch ex As Exception
         End Try
         Try
@@ -312,8 +384,8 @@ Public Class userControlImg
             Dim sOra As String = sDataScatto.Substring(11, 8)
             Dim sArrayOra As String() = sOra.Split(":")
             time = New DateTime(CType(sArrayData(0), Integer), CType(sArrayData(1), Integer), CType(sArrayData(2), Integer), CType(sArrayOra(0), Integer), CType(sArrayOra(1), Integer), CType(sArrayOra(2), Integer))
-            Dim format As String = "dd/MMM/yyyy HH:mm"
-            sDataScatto = ", " & time.ToString(format)
+            Dim format As String = "dd/MMM/yyyy ore HH:mm"
+            sDataScatto = time.ToString(format)
         Catch ex As Exception
         End Try
 
@@ -323,7 +395,7 @@ Public Class userControlImg
 
             a = BitConverter.ToUInt16(pic_data.Value, 0)
             b = BitConverter.ToUInt16(pic_data.Value, 4)
-            sEsposizione = ", 1/" & 1 / (a / b) & " sec"
+            sEsposizione = "1/" & 1 / (a / b) & " sec"
         Catch ex As Exception
         End Try
 
@@ -331,14 +403,14 @@ Public Class userControlImg
             pic_data = image.GetPropertyItem(ExifProperty.F_Number)
             a = BitConverter.ToUInt16(pic_data.Value, 0)
             b = BitConverter.ToUInt16(pic_data.Value, 4)
-            sDiaframma = ", f/" & a / b
+            sDiaframma = "f/" & a / b
         Catch ex As Exception
         End Try
 
         Try
             pic_data = image.GetPropertyItem(ExifProperty.ISO_Speed)
             a = BitConverter.ToUInt16(pic_data.Value, 0)
-            sISO = ", ISO " & a
+            sISO = "ISO " & a
         Catch ex As Exception
         End Try
 
@@ -347,36 +419,43 @@ Public Class userControlImg
             a = BitConverter.ToUInt16(pic_data.Value, 0)
             Dim ba As New BitArray({a})
             If (ba.Get(0)) Then
-                sFlash = ", Flash on"
+                sFlash = "Flash on"
             Else
-                sFlash = ", Flash off"
+                sFlash = "Flash off"
             End If
 
         Catch ex As Exception
         End Try
         LabelEXIF.Text = ""
         If My.Settings.bEXIFMarca Then
-            LabelEXIF.Text = LabelEXIF.Text & sMarca
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sMarca)
         End If
         If My.Settings.bEXIFModello Then
-            LabelEXIF.Text = LabelEXIF.Text & sModello
+            If LabelEXIF.Text <> "" And sModello IsNot Nothing Then LabelEXIF.Text += ", "
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sModello)
         End If
         If My.Settings.bEXIFDataOra Then
-            LabelEXIF.Text = LabelEXIF.Text & sDataScatto
+            If LabelEXIF.Text <> "" And sDataScatto IsNot Nothing Then LabelEXIF.Text += ", "
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sDataScatto)
         End If
-        If My.Settings.bEXIFEsposizione Then
-            LabelEXIF.Text = LabelEXIF.Text & sEsposizione
+        If My.Settings.bEXIFEsposizione And sEsposizione IsNot Nothing Then
+            If LabelEXIF.Text <> "" Then LabelEXIF.Text += ", "
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sEsposizione)
         End If
-        If My.Settings.bEXIFDiaframma Then
-            LabelEXIF.Text = LabelEXIF.Text & sDiaframma
+        If My.Settings.bEXIFDiaframma And sDiaframma IsNot Nothing Then
+            If LabelEXIF.Text <> "" Then LabelEXIF.Text += ", "
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sDiaframma)
         End If
-        If My.Settings.bEXIFISO Then
-            LabelEXIF.Text = LabelEXIF.Text & sISO
+        If My.Settings.bEXIFISO And sISO IsNot Nothing Then
+            If LabelEXIF.Text <> "" Then LabelEXIF.Text += ", "
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sISO)
         End If
-        If My.Settings.bEXIFFlash Then
-            LabelEXIF.Text = LabelEXIF.Text & sFlash
+        If My.Settings.bEXIFFlash And sFlash IsNot Nothing Then
+            If LabelEXIF.Text <> "" Then LabelEXIF.Text += ", "
+            LabelEXIF.Text = LabelEXIF.Text & Trim(sFlash)
         End If
         leggiContenuto(LinkLabelNomeFile.Text, TextBoxTag)
+        ToolTip1.SetToolTip(LabelEXIF, LabelEXIF.Text)
 
     End Sub
 

@@ -139,27 +139,33 @@ Public Class ActionsLibrary
 
 
     Public Sub wordInizializzaEcompila(controlCollection As System.Windows.Forms.Control.ControlCollection)
-        Dim oWord As Microsoft.Office.Interop.Word.Application = wordInizializzaDocumento()
-        oWord.Visible = False
-        wordScriviSegnalibro(oWord, "intestazione1", My.Settings.intestazione1, My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "intestazione2", My.Settings.intestazione2, My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "intestazione3", My.Settings.intestazione3,My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "oggetto", My.Settings.oggetto, My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "contenutoDettaglio", My.Settings.contenutoDettaglio, My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "autore", My.Settings.autore, My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "luogoData", My.Settings.luogo, My.Settings.carattereDimensioneBase)
-        wordScrivi(oWord, ", " & Date.Now().ToShortDateString, My.Settings.carattereDimensioneBase)
-        wordScriviSegnalibro(oWord, "gradoCognomeNome", My.Settings.gradoCognomeNome, My.Settings.carattereDimensioneBase)
+        Try
+            Dim oWord As Microsoft.Office.Interop.Word.Application = wordInizializzaDocumento()
+            oWord.Visible = False
+            wordScriviSegnalibro(oWord, "intestazione1", My.Settings.intestazione1, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "intestazione2", My.Settings.intestazione2, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "intestazione3", My.Settings.intestazione3, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "oggetto", My.Settings.oggetto, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "contenutoDettaglio", My.Settings.contenutoDettaglio, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "autore", My.Settings.autore, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "luogoData", My.Settings.luogo, My.Settings.carattereDimensioneBase)
+            wordScrivi(oWord, ", " & Date.Now().ToShortDateString, My.Settings.carattereDimensioneBase)
+            wordScriviSegnalibro(oWord, "gradoCognomeNome", My.Settings.gradoCognomeNome, My.Settings.carattereDimensioneBase)
 
-        'posiziona il cursone sul punto di inizio
-        '   wordScriviSegnalibro(oWord, "nuovaPagina", "", My.Settings.carattereDimensioneBase)
+            'posiziona il cursone sul punto di inizio
+            '   wordScriviSegnalibro(oWord, "nuovaPagina", "", My.Settings.carattereDimensioneBase)
 
-        wordscriviPagineFoto(oWord, controlCollection)
+            wordscriviPagineFoto(oWord, controlCollection)
+       
 
         ' wordAttivaDocumento(oWord)
         oWord.Visible = True
         oWord.Activate()
-        oWord = Nothing
+            oWord = Nothing
+        Catch ex As COMException
+            MsgBox("La copia Microsoft Office potrebbe non essere registrato ed attiva", MsgBoxStyle.Critical, "Errore")
+        End Try
+
     End Sub
 
     Public Sub wordAttivaDocumento(ByVal oWord As Microsoft.Office.Interop.Word.Application)
@@ -298,7 +304,6 @@ Public Class ActionsLibrary
             Next
         End If
 
-
         'se si tratta di un fascicolo per l'identificazione aggiungo la legenda all'ultima pagina
         If My.Settings.tipoFascicolo = "Identificazione" Then
 
@@ -383,9 +388,50 @@ Public Class ActionsLibrary
             'DESCRIZIONE
             wordScriviEnter(oTable.Application)
             wordScrivi(oTable.Application, element.TextBoxTag.Text, My.Settings.carattereDimensioneDidascalia)
+            Dim sEXIF As String = ""
+            Dim bFlag As Boolean = False
+            If My.Settings.bEXIFMarca Then
+                sEXIF += Trim(element.marca)
+                bFlag = True
+            End If
+            If My.Settings.bEXIFModello Then
+                If sEXIF <> "" And element.modello IsNot Nothing Then sEXIF += ", "
+                sEXIF += Trim(element.modello)
+                bFlag = True
+            End If
+            If My.Settings.bEXIFDataOra Then
+                If sEXIF <> "" And element.dataScatto IsNot Nothing Then sEXIF += ", "
+                sEXIF += Trim(element.dataScatto)
+                bFlag = True
+            End If
+            If My.Settings.bEXIFEsposizione Then
+                If sEXIF <> "" And element.esposizione IsNot Nothing Then sEXIF += ", "
+                sEXIF += Trim(element.esposizione)
+                bFlag = True
+            End If
+            If My.Settings.bEXIFDiaframma Then
+                If sEXIF <> "" And element.diaframma IsNot Nothing Then sEXIF += ", "
+                sEXIF += Trim(element.diaframma)
+                bFlag = True
+            End If
+            If My.Settings.bEXIFISO Then
+                If sEXIF <> "" And element.ISO IsNot Nothing Then sEXIF += ", "
+                sEXIF += Trim(element.ISO)
+                bFlag = True
+            End If
+            If My.Settings.bEXIFFlash Then
+                If sEXIF <> "" And element.flash IsNot Nothing Then sEXIF += ", "
+                sEXIF += Trim(element.flash)
 
+                bFlag = True
+            End If
+
+            If bFlag = True Then
+                wordScriviEnter(oTable.Application)
+                wordScrivi(oTable.Application, sEXIF, My.Settings.carattereDimensioneDidascalia)
+            End If
         End If
-        
+
         Return _shape
     End Function
 
