@@ -21,6 +21,7 @@ Public Class Form1
             i = i + 1
         Next
         For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
+
             AddHandler child.PictureBox1.MouseDown, AddressOf childs_MouseDown
 
             child.LabelNumeroFoto.Text = FlowLayoutPanel1.Controls.GetChildIndex(child) + 1
@@ -41,27 +42,30 @@ Public Class Form1
 
     Dim dragcursor As Cursor
     Dim dragtype As Type
-
+    Dim X As Integer = 0
+    Dim Y As Integer = 0
+    Dim xyMetrics As Integer = 30
     Private Sub childs_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
-        '  occorre distinguere tra drag&drop e click
-        If e.Clicks = 1 Then
+        'occorre distinguere tra drag&drop e click
+        If X = 0 Then
+            X = Control.MousePosition.X
+        End If
+        If Y = 0 Then
+            Y = Control.MousePosition.Y
+        End If
+
+        If e.Button = Windows.Forms.MouseButtons.Left Then
             Dim source As userControlImg = CType(sender.parent, userControlImg)
-            source.selected = Not source.selected
-            Me.Refresh()
+            Using bmp As New Bitmap(source.Width, source.Height)
+                source.DrawToBitmap(bmp, New Rectangle(Point.Empty, source.Size))
+                Me.dragcursor = New Cursor(bmp.GetHicon)
+            End Using
+
+            Me.dragtype = source.GetType
+            Me.DoDragDrop(source, DragDropEffects.Move)
+            Me.dragcursor.Dispose()
         Else
 
-
-            If e.Button = Windows.Forms.MouseButtons.Left Then
-                Dim source As userControlImg = CType(sender.parent, userControlImg)
-                Using bmp As New Bitmap(source.Width, source.Height)
-                    source.DrawToBitmap(bmp, New Rectangle(Point.Empty, source.Size))
-                    Me.dragcursor = New Cursor(bmp.GetHicon)
-                End Using
-
-                Me.dragtype = source.GetType
-                Me.DoDragDrop(source, DragDropEffects.Move)
-                Me.dragcursor.Dispose()
-            End If
         End If
     End Sub
 
@@ -73,16 +77,25 @@ Public Class Form1
             PopolaImmagini(filePaths)
             'Next
         Else
-            'MUOVE IMMAGINE
-            Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
-            Dim target As userControlImg = Me.FlowLayoutPanel1.GetChildAtPoint(Me.FlowLayoutPanel1.PointToClient(New Point(e.X, e.Y)))
-            If target IsNot Nothing Then
-                Dim ix As Integer = Me.FlowLayoutPanel1.Controls.GetChildIndex(target)
-                Me.FlowLayoutPanel1.Controls.SetChildIndex(source, ix)
-                renumber()
+            If (X > 0 And Y > 0) And (Math.Abs(X - Control.MousePosition.X) > xyMetrics Or Math.Abs(Y - Control.MousePosition.Y) > xyMetrics) Then
+
+                'MUOVE IMMAGINE
+                Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
+                Dim target As userControlImg = Me.FlowLayoutPanel1.GetChildAtPoint(Me.FlowLayoutPanel1.PointToClient(New Point(e.X, e.Y)))
+                If target IsNot Nothing Then
+                    Dim ix As Integer = Me.FlowLayoutPanel1.Controls.GetChildIndex(target)
+                    Me.FlowLayoutPanel1.Controls.SetChildIndex(source, ix)
+                    renumber()
+                End If
+            Else
+                'Single tratta di un click
+                Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
+                source.selected = Not source.selected
+                Me.Refresh()
             End If
         End If
-
+        X = 0
+        Y = 0
     End Sub
 
     Private Sub FlowLayoutPanel1_DragEnter(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles FlowLayoutPanel1.DragEnter
