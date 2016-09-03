@@ -184,4 +184,7 @@ Public Class Form1
     End Sub
 
 
+    Private Sub FlowLayoutPanel1_Click(sender As System.Object, e As System.EventArgs) Handles FlowLayoutPanel1.Click
+        clearSelected()
+    End Sub
 End Class

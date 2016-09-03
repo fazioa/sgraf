@@ -92,5 +92,8 @@
     <Setting Name="bEXIFISO" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="coloreSelezione" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">192, 255, 255</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -316,13 +316,41 @@ Public Class userControlImg
         Set(ByVal value As Boolean)
             isSelected = value
             If isSelected Then
-                Me.BackColor = Color.CadetBlue
+                '   Me.BackColor = My.Settings.coloreSelezione
+                modPixels(PictureBox1.Image, 0.1)
                 Form1.FlowLayoutPanel1.Focus()
             Else
-                Me.BackColor = Color.Empty
+                modPixels(PictureBox1.Image, 0)
+                '  Me.BackColor = Color.Empty
             End If
         End Set
     End Property
+
+    Dim pixelColor As Color
+    Dim r, g, b As Byte
+
+    non va bene. cambiare il tipo di variazione di colore della foto, quando selezionata
+    Private Sub modPixels(image As Image, iDelta As Integer)
+        ' Set each pixel in myBitmap to black.
+        Dim myBitmap As Bitmap = PictureBox1.Image
+        Dim Xcount As Integer
+        For Xcount = 0 To myBitmap.Width - 1
+            Dim Ycount As Integer
+            For Ycount = 0 To myBitmap.Height - 1
+                pixelColor = myBitmap.GetPixel(Xcount, Ycount)
+
+                '                r = (pixelColor.R + iDelta) Mod 256
+                '              g = (pixelColor.G + iDelta) Mod 256
+                '             b = (pixelColor.B + iDelta) Mod 256
+                '                pixelColor = Color.FromArgb(r, g, b)
+                pixelColor = Color.FromArgb(iDelta, pixelColor)
+
+                myBitmap.SetPixel(Xcount, Ycount, pixelColor) 'cambiaore
+            Next Ycount
+        Next Xcount
+        PictureBox1.Image = myBitmap
+    End Sub
+
 
     Sub New(image As Image, p2 As String)
         InitializeComponent()
@@ -520,5 +548,7 @@ Public Class userControlImg
     '  Private Sub Me_Click(sender As Object, e As EventArgs)
     '
     ' End Sub
+
+
 
 End Class
