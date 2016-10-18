@@ -98,5 +98,8 @@
     <Setting Name="trasparenzaImmagine" Type="System.String" Scope="User">
       <Value Profile="(Default)">-40</Value>
     </Setting>
+    <Setting Name="bNomeFile" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

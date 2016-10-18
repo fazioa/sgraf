@@ -36,29 +36,21 @@ Partial Class FPreferenze
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TextBox15 = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.TextBox16 = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.TextBox17 = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Label20 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.TextBox18 = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.TextBox19 = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.CheckBoxISO = New System.Windows.Forms.CheckBox()
         Me.CheckBoxFlash = New System.Windows.Forms.CheckBox()
         Me.CheckBoxDiaframma = New System.Windows.Forms.CheckBox()
@@ -66,8 +58,18 @@ Partial Class FPreferenze
         Me.CheckBoxDataOra = New System.Windows.Forms.CheckBox()
         Me.CheckBoxModello = New System.Windows.Forms.CheckBox()
         Me.CheckBoxMarca = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxNomeFile = New System.Windows.Forms.CheckBox()
+        Me.TextBox18 = New System.Windows.Forms.TextBox()
+        Me.TextBox19 = New System.Windows.Forms.TextBox()
         Me.CheckBoxMemorizzaDidascalia = New System.Windows.Forms.CheckBox()
         Me.ComboBoxTipoFascicolo = New System.Windows.Forms.ComboBox()
+        Me.TextBox16 = New System.Windows.Forms.TextBox()
+        Me.TextBox17 = New System.Windows.Forms.TextBox()
+        Me.TextBox15 = New System.Windows.Forms.TextBox()
+        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.TextBox12 = New System.Windows.Forms.TextBox()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
@@ -84,6 +86,7 @@ Partial Class FPreferenze
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -207,15 +210,6 @@ Partial Class FPreferenze
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Disposizione"
         '
-        'TextBox14
-        '
-        Me.TextBox14.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "disposizioneRighe", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox14.Location = New System.Drawing.Point(60, 45)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(28, 20)
-        Me.TextBox14.TabIndex = 1
-        Me.TextBox14.Text = Global.SGraf.My.MySettings.Default.disposizioneRighe
-        '
         'Label16
         '
         Me.Label16.AutoSize = True
@@ -224,15 +218,6 @@ Partial Class FPreferenze
         Me.Label16.Size = New System.Drawing.Size(35, 13)
         Me.Label16.TabIndex = 31
         Me.Label16.Text = "Righe"
-        '
-        'TextBox13
-        '
-        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "disposizioneColonne", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox13.Location = New System.Drawing.Point(60, 19)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(28, 20)
-        Me.TextBox13.TabIndex = 0
-        Me.TextBox13.Text = Global.SGraf.My.MySettings.Default.disposizioneColonne
         '
         'Label15
         '
@@ -258,17 +243,6 @@ Partial Class FPreferenze
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Dimensione carattere"
         '
-        'TextBox15
-        '
-        Me.TextBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "carattereDimensioneDidascalia", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox15.Location = New System.Drawing.Point(168, 71)
-        Me.TextBox15.Name = "TextBox15"
-        Me.TextBox15.Size = New System.Drawing.Size(31, 20)
-        Me.TextBox15.TabIndex = 2
-        Me.TextBox15.Text = Global.SGraf.My.MySettings.Default.carattereDimensioneDidascalia
-        '
         'Label17
         '
         Me.Label17.AutoSize = True
@@ -278,17 +252,6 @@ Partial Class FPreferenze
         Me.Label17.TabIndex = 24
         Me.Label17.Text = "Dimensione carattere didascalia"
         '
-        'TextBox11
-        '
-        Me.TextBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "carattereDimensioneTitoloFoto", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox11.Location = New System.Drawing.Point(168, 45)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(31, 20)
-        Me.TextBox11.TabIndex = 1
-        Me.TextBox11.Text = Global.SGraf.My.MySettings.Default.carattereDimensioneTitoloFoto
-        '
         'Label11
         '
         Me.Label11.AutoSize = True
@@ -297,17 +260,6 @@ Partial Class FPreferenze
         Me.Label11.Size = New System.Drawing.Size(153, 13)
         Me.Label11.TabIndex = 22
         Me.Label11.Text = "Dimensione carattere titolo foto"
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "carattereDimensioneBase", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox9.Location = New System.Drawing.Point(162, 19)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(37, 20)
-        Me.TextBox9.TabIndex = 0
-        Me.TextBox9.Text = Global.SGraf.My.MySettings.Default.carattereDimensioneBase
         '
         'GroupBox3
         '
@@ -322,15 +274,6 @@ Partial Class FPreferenze
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Dimensioni massime"
         '
-        'TextBox16
-        '
-        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoLarghezzaCM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox16.Location = New System.Drawing.Point(68, 45)
-        Me.TextBox16.Name = "TextBox16"
-        Me.TextBox16.Size = New System.Drawing.Size(28, 20)
-        Me.TextBox16.TabIndex = 1
-        Me.TextBox16.Text = Global.SGraf.My.MySettings.Default.fotoLarghezzaCM
-        '
         'Label18
         '
         Me.Label18.AutoSize = True
@@ -339,15 +282,6 @@ Partial Class FPreferenze
         Me.Label18.Size = New System.Drawing.Size(56, 13)
         Me.Label18.TabIndex = 31
         Me.Label18.Text = "Larghezza"
-        '
-        'TextBox17
-        '
-        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoAltezzaCM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox17.Location = New System.Drawing.Point(68, 19)
-        Me.TextBox17.Name = "TextBox17"
-        Me.TextBox17.Size = New System.Drawing.Size(28, 20)
-        Me.TextBox17.TabIndex = 0
-        Me.TextBox17.Text = Global.SGraf.My.MySettings.Default.fotoAltezzaCM
         '
         'Label19
         '
@@ -384,15 +318,6 @@ Partial Class FPreferenze
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Dimensioni miniature"
         '
-        'TextBox18
-        '
-        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoLarghezzaTumb", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox18.Location = New System.Drawing.Point(68, 45)
-        Me.TextBox18.Name = "TextBox18"
-        Me.TextBox18.Size = New System.Drawing.Size(28, 20)
-        Me.TextBox18.TabIndex = 1
-        Me.TextBox18.Text = Global.SGraf.My.MySettings.Default.fotoLarghezzaTumb
-        '
         'Label14
         '
         Me.Label14.AutoSize = True
@@ -401,15 +326,6 @@ Partial Class FPreferenze
         Me.Label14.Size = New System.Drawing.Size(56, 13)
         Me.Label14.TabIndex = 31
         Me.Label14.Text = "Larghezza"
-        '
-        'TextBox19
-        '
-        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoAltezzaTumb", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.TextBox19.Location = New System.Drawing.Point(68, 19)
-        Me.TextBox19.Name = "TextBox19"
-        Me.TextBox19.Size = New System.Drawing.Size(28, 20)
-        Me.TextBox19.TabIndex = 0
-        Me.TextBox19.Text = Global.SGraf.My.MySettings.Default.fotoAltezzaTumb
         '
         'Label21
         '
@@ -429,12 +345,23 @@ Partial Class FPreferenze
         Me.GroupBox5.Controls.Add(Me.CheckBoxDataOra)
         Me.GroupBox5.Controls.Add(Me.CheckBoxModello)
         Me.GroupBox5.Controls.Add(Me.CheckBoxMarca)
-        Me.GroupBox5.Location = New System.Drawing.Point(12, 454)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 20)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(363, 74)
+        Me.GroupBox5.Size = New System.Drawing.Size(349, 74)
         Me.GroupBox5.TabIndex = 38
         Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Dati EXIF"
+        Me.GroupBox5.Text = "EXIF"
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.GroupBox5)
+        Me.GroupBox6.Controls.Add(Me.CheckBoxNomeFile)
+        Me.GroupBox6.Location = New System.Drawing.Point(16, 454)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(361, 126)
+        Me.GroupBox6.TabIndex = 40
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Dati da inserire nel fascicolo"
         '
         'CheckBoxISO
         '
@@ -527,6 +454,37 @@ Partial Class FPreferenze
         Me.CheckBoxMarca.Text = "Marca"
         Me.CheckBoxMarca.UseVisualStyleBackColor = True
         '
+        'CheckBoxNomeFile
+        '
+        Me.CheckBoxNomeFile.AutoSize = True
+        Me.CheckBoxNomeFile.Checked = Global.SGraf.My.MySettings.Default.bNomeFile
+        Me.CheckBoxNomeFile.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxNomeFile.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.SGraf.My.MySettings.Default, "bNomeFile", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.CheckBoxNomeFile.Location = New System.Drawing.Point(13, 100)
+        Me.CheckBoxNomeFile.Name = "CheckBoxNomeFile"
+        Me.CheckBoxNomeFile.Size = New System.Drawing.Size(73, 17)
+        Me.CheckBoxNomeFile.TabIndex = 39
+        Me.CheckBoxNomeFile.Text = "Nome File"
+        Me.CheckBoxNomeFile.UseVisualStyleBackColor = True
+        '
+        'TextBox18
+        '
+        Me.TextBox18.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoLarghezzaTumb", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox18.Location = New System.Drawing.Point(68, 45)
+        Me.TextBox18.Name = "TextBox18"
+        Me.TextBox18.Size = New System.Drawing.Size(28, 20)
+        Me.TextBox18.TabIndex = 1
+        Me.TextBox18.Text = Global.SGraf.My.MySettings.Default.fotoLarghezzaTumb
+        '
+        'TextBox19
+        '
+        Me.TextBox19.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoAltezzaTumb", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox19.Location = New System.Drawing.Point(68, 19)
+        Me.TextBox19.Name = "TextBox19"
+        Me.TextBox19.Size = New System.Drawing.Size(28, 20)
+        Me.TextBox19.TabIndex = 0
+        Me.TextBox19.Text = Global.SGraf.My.MySettings.Default.fotoAltezzaTumb
+        '
         'CheckBoxMemorizzaDidascalia
         '
         Me.CheckBoxMemorizzaDidascalia.AutoSize = True
@@ -551,6 +509,75 @@ Partial Class FPreferenze
         Me.ComboBoxTipoFascicolo.TabIndex = 13
         Me.ComboBoxTipoFascicolo.Text = Global.SGraf.My.MySettings.Default.tipoFascicolo
         '
+        'TextBox16
+        '
+        Me.TextBox16.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoLarghezzaCM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox16.Location = New System.Drawing.Point(68, 45)
+        Me.TextBox16.Name = "TextBox16"
+        Me.TextBox16.Size = New System.Drawing.Size(28, 20)
+        Me.TextBox16.TabIndex = 1
+        Me.TextBox16.Text = Global.SGraf.My.MySettings.Default.fotoLarghezzaCM
+        '
+        'TextBox17
+        '
+        Me.TextBox17.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "fotoAltezzaCM", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox17.Location = New System.Drawing.Point(68, 19)
+        Me.TextBox17.Name = "TextBox17"
+        Me.TextBox17.Size = New System.Drawing.Size(28, 20)
+        Me.TextBox17.TabIndex = 0
+        Me.TextBox17.Text = Global.SGraf.My.MySettings.Default.fotoAltezzaCM
+        '
+        'TextBox15
+        '
+        Me.TextBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox15.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "carattereDimensioneDidascalia", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox15.Location = New System.Drawing.Point(168, 71)
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.Size = New System.Drawing.Size(31, 20)
+        Me.TextBox15.TabIndex = 2
+        Me.TextBox15.Text = Global.SGraf.My.MySettings.Default.carattereDimensioneDidascalia
+        '
+        'TextBox11
+        '
+        Me.TextBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox11.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "carattereDimensioneTitoloFoto", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox11.Location = New System.Drawing.Point(168, 45)
+        Me.TextBox11.Name = "TextBox11"
+        Me.TextBox11.Size = New System.Drawing.Size(31, 20)
+        Me.TextBox11.TabIndex = 1
+        Me.TextBox11.Text = Global.SGraf.My.MySettings.Default.carattereDimensioneTitoloFoto
+        '
+        'TextBox9
+        '
+        Me.TextBox9.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox9.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "carattereDimensioneBase", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox9.Location = New System.Drawing.Point(162, 19)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.Size = New System.Drawing.Size(37, 20)
+        Me.TextBox9.TabIndex = 0
+        Me.TextBox9.Text = Global.SGraf.My.MySettings.Default.carattereDimensioneBase
+        '
+        'TextBox14
+        '
+        Me.TextBox14.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "disposizioneRighe", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox14.Location = New System.Drawing.Point(60, 45)
+        Me.TextBox14.Name = "TextBox14"
+        Me.TextBox14.Size = New System.Drawing.Size(28, 20)
+        Me.TextBox14.TabIndex = 1
+        Me.TextBox14.Text = Global.SGraf.My.MySettings.Default.disposizioneRighe
+        '
+        'TextBox13
+        '
+        Me.TextBox13.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "disposizioneColonne", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox13.Location = New System.Drawing.Point(60, 19)
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.Size = New System.Drawing.Size(28, 20)
+        Me.TextBox13.TabIndex = 0
+        Me.TextBox13.Text = Global.SGraf.My.MySettings.Default.disposizioneColonne
+        '
         'TextBox12
         '
         Me.TextBox12.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "titoloFoto", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
@@ -567,7 +594,7 @@ Partial Class FPreferenze
         Me.TextBox10.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "gruppoFirmaIRiga", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox10.Location = New System.Drawing.Point(152, 181)
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(353, 20)
+        Me.TextBox10.Size = New System.Drawing.Size(335, 20)
         Me.TextBox10.TabIndex = 6
         Me.TextBox10.Text = Global.SGraf.My.MySettings.Default.gruppoFirmaIRiga
         '
@@ -578,7 +605,7 @@ Partial Class FPreferenze
         Me.TextBox8.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "gradoCognomeNome", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox8.Location = New System.Drawing.Point(152, 209)
         Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(353, 20)
+        Me.TextBox8.Size = New System.Drawing.Size(335, 20)
         Me.TextBox8.TabIndex = 7
         Me.TextBox8.Text = Global.SGraf.My.MySettings.Default.gradoCognomeNome
         '
@@ -589,7 +616,7 @@ Partial Class FPreferenze
         Me.TextBox7.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "luogo", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox7.Location = New System.Drawing.Point(58, 235)
         Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(447, 20)
+        Me.TextBox7.Size = New System.Drawing.Size(429, 20)
         Me.TextBox7.TabIndex = 8
         Me.TextBox7.Text = Global.SGraf.My.MySettings.Default.luogo
         '
@@ -600,7 +627,7 @@ Partial Class FPreferenze
         Me.TextBox6.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "autore", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox6.Location = New System.Drawing.Point(59, 155)
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(446, 20)
+        Me.TextBox6.Size = New System.Drawing.Size(428, 20)
         Me.TextBox6.TabIndex = 5
         Me.TextBox6.Text = Global.SGraf.My.MySettings.Default.autore
         '
@@ -611,7 +638,7 @@ Partial Class FPreferenze
         Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "contenutoDettaglio", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox5.Location = New System.Drawing.Point(166, 129)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(339, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(321, 20)
         Me.TextBox5.TabIndex = 4
         Me.TextBox5.Text = Global.SGraf.My.MySettings.Default.contenutoDettaglio
         '
@@ -622,7 +649,7 @@ Partial Class FPreferenze
         Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "oggetto", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox4.Location = New System.Drawing.Point(66, 103)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(439, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(421, 20)
         Me.TextBox4.TabIndex = 3
         Me.TextBox4.Text = Global.SGraf.My.MySettings.Default.oggetto
         '
@@ -633,7 +660,7 @@ Partial Class FPreferenze
         Me.TextBox3.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "intestazione3", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox3.Location = New System.Drawing.Point(95, 77)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(410, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(392, 20)
         Me.TextBox3.TabIndex = 2
         Me.TextBox3.Text = Global.SGraf.My.MySettings.Default.intestazione3
         '
@@ -644,7 +671,7 @@ Partial Class FPreferenze
         Me.TextBox2.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "intestazione2", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox2.Location = New System.Drawing.Point(95, 51)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(410, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(392, 20)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = Global.SGraf.My.MySettings.Default.intestazione2
         '
@@ -655,7 +682,7 @@ Partial Class FPreferenze
         Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "intestazione1", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.TextBox1.Location = New System.Drawing.Point(95, 25)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(410, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(392, 20)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = Global.SGraf.My.MySettings.Default.intestazione1
         '
@@ -663,8 +690,8 @@ Partial Class FPreferenze
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(536, 543)
-        Me.Controls.Add(Me.GroupBox5)
+        Me.ClientSize = New System.Drawing.Size(518, 583)
+        Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.CheckBoxMemorizzaDidascalia)
         Me.Controls.Add(Me.Label20)
@@ -706,6 +733,8 @@ Partial Class FPreferenze
         Me.GroupBox4.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -765,4 +794,6 @@ Partial Class FPreferenze
     Friend WithEvents CheckBoxModello As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxMarca As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxISO As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents CheckBoxNomeFile As System.Windows.Forms.CheckBox
 End Class

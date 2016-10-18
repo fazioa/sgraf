@@ -82,7 +82,6 @@ Public Class ActionsLibrary
     End Sub
 
     Public Sub wordScrivi(ByVal oWord As Microsoft.Office.Interop.Word.Application, ByVal valore As String, ByVal dPtCarattere As Double)
-
         oWord.ActiveWindow.Selection.Font.Size = dPtCarattere
         oWord.Selection.TypeText(Text:=valore)
     End Sub
@@ -91,9 +90,6 @@ Public Class ActionsLibrary
         log.xlogWriteEntry("Word - scrive ENTER", TraceEventType.Critical)
         oWord.Selection.TypeParagraph()
     End Sub
-
-
-
 
     Private Function wordInizializzaDocumento()
         Try
@@ -370,6 +366,9 @@ Public Class ActionsLibrary
         Return oWord.Selection.InlineShapes.AddPicture(element.sNomeFile, My.Settings.bIncorporaImmagini)
     End Function
 
+    Dim sEXIF As String = ""
+    Dim bFlag As Boolean = False
+    Dim sNomeFile As String = ""
     Private Function inserisciImmagineInCella(oTable As Table, element As userControlImg, iRig As Integer, iCol As Integer) As InlineShape
         oTable.Cell(iRig, iCol).Range.Text = iRig & " - " & iCol & ", " & element.LabelNumeroFoto.Text
         Dim Shad As Shading
@@ -388,8 +387,8 @@ Public Class ActionsLibrary
             'DESCRIZIONE
             wordScriviEnter(oTable.Application)
             wordScrivi(oTable.Application, element.TextBoxTag.Text, My.Settings.carattereDimensioneDidascalia)
-            Dim sEXIF As String = ""
-            Dim bFlag As Boolean = False
+            sEXIF = ""
+            bFlag = False
             If My.Settings.bEXIFMarca Then
                 sEXIF += Trim(element.marca)
                 bFlag = True
@@ -426,7 +425,11 @@ Public Class ActionsLibrary
                 bFlag = True
             End If
 
+            sNomeFile = Path.GetFileName(element.sNomeFile)
+
             If bFlag = True Then
+                wordScriviEnter(oTable.Application)
+                wordScrivi(oTable.Application, sNomeFile, My.Settings.carattereDimensioneDidascalia)
                 wordScriviEnter(oTable.Application)
                 wordScrivi(oTable.Application, sEXIF, My.Settings.carattereDimensioneDidascalia)
             End If
@@ -439,23 +442,29 @@ Public Class ActionsLibrary
         Dim dRapporto As Double = element.imageTmbWidth / element.imagTmbHeight
         Dim _alt, _larg As Double
 
-
-
-
-        If dRapporto < 1 Then
-            'se è verticale allora uso l'altezza massima impostata e determino al larghezza
-            myShape.Height = myShape.Application.CentimetersToPoints(altezzaCM)
-            _larg = altezzaCM * dRapporto
-            myShape.Width = myShape.Application.CentimetersToPoints(_larg)
-        Else
-            'se è orizzontale allora uso la larghezza impostata e determino l'altezza
+        '       If dRapporto < 1 Then
+        If (myShape.Application.PointsToCentimeters(element.PictureBox1.Image.Width) > larghezzaCM) Then
             myShape.Width = myShape.Application.CentimetersToPoints(larghezzaCM)
             _alt = larghezzaCM / dRapporto
             myShape.Height = myShape.Application.CentimetersToPoints(_alt)
-
         End If
 
-     
+        If (myShape.Application.PointsToCentimeters(myShape.Height) > altezzaCM) Then
+            myShape.Height = myShape.Application.CentimetersToPoints(altezzaCM)
+            _larg = altezzaCM * dRapporto
+            myShape.Width = myShape.Application.CentimetersToPoints(_larg)
+        End If
+
+      
+
+        '  Else
+        'se è orizzontale allora uso la larghezza impostata e determino l'altezza
+        '     myShape.Width = myShape.Application.CentimetersToPoints(larghezzaCM)
+ 
+
+
+
+
     End Sub
 
 

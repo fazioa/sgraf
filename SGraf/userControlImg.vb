@@ -318,7 +318,7 @@ Public Class userControlImg
             If isSelected Then
                 PictureBoxTick.Parent = PictureBox1
                 PictureBoxTick.Top = PictureBox1.Location.Y
-                PictureBoxTick.Left = PictureBox1.Location.X + PictureBox1.Width - PictureBoxTick.Width - 25
+                PictureBoxTick.Left = PictureBox1.Location.X + PictureBox1.Width - PictureBoxTick.Width - 22
 
                 PictureBoxTick.Visible = True
                 Form1.FlowLayoutPanel1.Focus()
@@ -429,10 +429,13 @@ Public Class userControlImg
         Dim a, b As UShort
         Try
             pic_data = image.GetPropertyItem(ExifProperty.Exposure_Time)
-
-            a = BitConverter.ToUInt16(pic_data.Value, 0)
-            b = BitConverter.ToUInt16(pic_data.Value, 4)
-            sEsposizione = "1/" & 1 / (a / b) & " sec"
+            a = CType(BitConverter.ToUInt16(pic_data.Value, 0), Double)
+            b = CType(BitConverter.ToUInt16(pic_data.Value, 4), Double)
+            If (a / b) >= 1 Then
+                sEsposizione = (a / b) & " sec"
+            Else
+                sEsposizione = "1/" & 1 / (a / b) & " sec"
+            End If
         Catch ex As Exception
         End Try
 

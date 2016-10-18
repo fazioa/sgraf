@@ -437,6 +437,18 @@ Namespace My
                 Me("trasparenzaImmagine") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property bNomeFile() As Boolean
+            Get
+                Return CType(Me("bNomeFile"),Boolean)
+            End Get
+            Set
+                Me("bNomeFile") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

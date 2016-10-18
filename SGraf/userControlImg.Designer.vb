@@ -96,7 +96,7 @@ Partial Class userControlImg
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabelNomeFile)
         Me.FlowLayoutPanel1.Controls.Add(Me.LabelEXIF)
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(29, 138)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(29, 137)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(171, 32)
         Me.FlowLayoutPanel1.TabIndex = 8
@@ -125,7 +125,7 @@ Partial Class userControlImg
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.LabelNumeroFoto)
         Me.Name = "userControlImg"
-        Me.Size = New System.Drawing.Size(211, 224)
+        Me.Size = New System.Drawing.Size(210, 224)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.PerformLayout()
