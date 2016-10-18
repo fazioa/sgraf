@@ -95,5 +95,8 @@
     <Setting Name="coloreSelezione" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">192, 255, 255</Value>
     </Setting>
+    <Setting Name="trasparenzaImmagine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-40</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

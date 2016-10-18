@@ -316,12 +316,14 @@ Public Class userControlImg
         Set(ByVal value As Boolean)
             isSelected = value
             If isSelected Then
-                '   Me.BackColor = My.Settings.coloreSelezione
-                modPixels(PictureBox1.Image, 0.1)
+                PictureBoxTick.Parent = PictureBox1
+                PictureBoxTick.Top = PictureBox1.Location.Y
+                PictureBoxTick.Left = PictureBox1.Location.X + PictureBox1.Width - PictureBoxTick.Width - 25
+
+                PictureBoxTick.Visible = True
                 Form1.FlowLayoutPanel1.Focus()
             Else
-                modPixels(PictureBox1.Image, 0)
-                '  Me.BackColor = Color.Empty
+                PictureBoxTick.Visible = False
             End If
         End Set
     End Property
@@ -329,28 +331,35 @@ Public Class userControlImg
     Dim pixelColor As Color
     Dim r, g, b As Byte
 
-    non va bene. cambiare il tipo di variazione di colore della foto, quando selezionata
-    Private Sub modPixels(image As Image, iDelta As Integer)
-        ' Set each pixel in myBitmap to black.
-        Dim myBitmap As Bitmap = PictureBox1.Image
-        Dim Xcount As Integer
-        For Xcount = 0 To myBitmap.Width - 1
-            Dim Ycount As Integer
-            For Ycount = 0 To myBitmap.Height - 1
-                pixelColor = myBitmap.GetPixel(Xcount, Ycount)
+    
 
-                '                r = (pixelColor.R + iDelta) Mod 256
-                '              g = (pixelColor.G + iDelta) Mod 256
-                '             b = (pixelColor.B + iDelta) Mod 256
-                '                pixelColor = Color.FromArgb(r, g, b)
-                pixelColor = Color.FromArgb(iDelta, pixelColor)
-
-                myBitmap.SetPixel(Xcount, Ycount, pixelColor) 'cambiaore
-            Next Ycount
-        Next Xcount
-        PictureBox1.Image = myBitmap
-    End Sub
-
+    Public Function IngAC_IMMAGINE_LUMINOSITA(ByVal Immagine As Bitmap, ByVal Luminosita As Single) As Bitmap
+        'luminosità range [-1,+1]=>[0,100]
+        If Luminosita < 0 Then Luminosita = 0
+        If Luminosita > 100 Then Luminosita = 100
+        Dim br As Single = 2 * Luminosita / 100 - 1 '-1, +1
+        ' Si crea la Brightness_Matrix
+        Dim Brightness_Matrix As Single()() = {
+         New Single() {1, 0, 0, 0, 0},
+         New Single() {0, 1, 0, 0, 0},
+         New Single() {0, 0, 1, 0, 0},
+         New Single() {0, 0, 0, 1, 0},
+         New Single() {br, br, br, 0, 1}}
+        ' Si crea una copia dell'immagine di partenza 
+        Dim bmp As New Bitmap(Immagine)
+        Dim imgattr As New ImageAttributes()
+        Dim rc As New Rectangle(0, 0, Immagine.Width, Immagine.Height)
+        Dim g As Graphics = Graphics.FromImage(Immagine)
+        Dim cm As New ColorMatrix(Brightness_Matrix)
+        '  Si associa la Brightness_Matrix con una ImageAttributes
+        imgattr.SetColorMatrix(cm)
+        ' Si applica la color_matrix all'immagine
+        g.DrawImage(bmp, rc, 0, 0, Immagine.Width, Immagine.Height,
+                                  GraphicsUnit.Pixel, imgattr)
+        ' Reset
+        g.Dispose()
+        Return Immagine ' Restituisce l'immagine modificata
+    End Function
 
     Sub New(image As Image, p2 As String)
         InitializeComponent()
