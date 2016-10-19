@@ -215,7 +215,6 @@ Public Class ActionsLibrary
                 If iCountCella < My.Settings.disposizioneRighe * My.Settings.disposizioneColonne Then
                     inserisciImmagineInCella(oTable, element, iRig, iCol)
                     'oTable.Cell(iRig, iCol).Range.Text = iRig & " - " & iCol & ", " & element.LabelNumeroFoto.Text
-
                     iCountCella = iCountCella + 1
                     iCol = iCol + 1
                     If iCountCella Mod inrColonne = 0 Then
@@ -223,9 +222,7 @@ Public Class ActionsLibrary
                         iRig = iRig + 1
                         iCol = 1
                     End If
-
                 Else
-
                     'posiziono il puntatore a fine documento
                     oRng = oDoc.Bookmarks.Item("\endofdoc").Range
                     'inserisco un'interruzione di pagina
@@ -252,9 +249,7 @@ Public Class ActionsLibrary
                         iRig = iRig + 1
                     End If
                 End If
-
             Next
-
         Else
             'INSERISCE FOTO IMPILANDOLE, SENZA TABELLA
             For Each element As userControlImg In controlCollection
@@ -287,16 +282,9 @@ Public Class ActionsLibrary
                 'solo se il fascicolo è descrittivo
                 If My.Settings.tipoFascicolo = "Descrittivo" Then
                     'DESCRIZIONE
-                    wordScriviEnter(oDoc.Application)
+                    ' wordScriviEnter(oDoc.Application)
                     wordScrivi(oDoc.Application, element.TextBoxTag.Text, My.Settings.carattereDimensioneDidascalia)
-
                 End If
-                ' .Height = oWord.CentimetersToPoints(10)
-                ' myShape.Width = oWord.CentimetersToPoints(10)
-                '  myShape.ScaleWidth = 120
-                ' myShape.ScaleHeight = 120
-                'myShape.LockAspectRatio = TriState.True
-
             Next
         End If
 
@@ -325,39 +313,6 @@ Public Class ActionsLibrary
         End If
     End Sub
 
-
-
-    'Shared Function salvaImageToJPG(ByVal img As Image) As String
-    '    Dim imgCodecs() As Imaging.ImageCodecInfo = Imaging.ImageCodecInfo.GetImageEncoders()
-    '    Dim params As Imaging.EncoderParameters = New Imaging.EncoderParameters(1)
-    '    Dim quality As Imaging.EncoderParameter = New Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 35)
-
-    '    'cartella scrivibile + cartella file temporanei
-    '    Dim sPath As String = My.Settings.pathCartellaScrivibile & My.Settings.sTempDirName
-
-    '    'Set quality to 50
-    '    params.Param(0) = quality
-    '    Dim b_isOk = True
-    '    Try
-    '        System.IO.Directory.Delete(sPath, True)
-    '    Catch ex As Exception
-    '        b_isOk = False
-    '    End Try
-    '    Try
-    '        System.IO.Directory.CreateDirectory(sPath)
-    '        b_isOk = True
-    '    Catch ex As Exception
-    '        b_isOk = False
-    '    End Try
-    '    If b_isOk Then
-    '        Dim sFilePath As String = sPath & "\" & Now.Ticks & " screenshot.jpg"
-    '        img.Save(sFilePath, imgCodecs(1), params)
-    '        Return sFilePath
-    '    End If
-    '    'se arrivo qui vuol dire che c'è stato qualche errore
-    '    Return Nothing
-    'End Function
-
     Private Function inserisciTabella(oDoc As Microsoft.Office.Interop.Word.Document, oWord As Microsoft.Office.Interop.Word.Application)
         Return oDoc.Tables.Add(oWord.Selection.Range, My.Settings.disposizioneRighe, My.Settings.disposizioneColonne)
     End Function
@@ -376,7 +331,6 @@ Public Class ActionsLibrary
         oTable.Cell(iRig, iCol).Select()
 
         'TITOLO
-
         wordScrivi(oTable.Application, My.Settings.titoloFoto & " " & element.LabelNumeroFoto.Text, My.Settings.carattereDimensioneTitoloFoto)
         wordScriviEnter(oTable.Application)
         Dim _shape As InlineShape = oTable.Application.Selection.InlineShapes.AddPicture(element.sNomeFile, My.Settings.bIncorporaImmagini)
@@ -421,20 +375,22 @@ Public Class ActionsLibrary
             If My.Settings.bEXIFFlash Then
                 If sEXIF <> "" And element.flash IsNot Nothing Then sEXIF += ", "
                 sEXIF += Trim(element.flash)
-
                 bFlag = True
             End If
 
             sNomeFile = Path.GetFileName(element.sNomeFile)
 
-            If bFlag = True Then
+            If (My.Settings.bNomeFile) Then
                 wordScriviEnter(oTable.Application)
                 wordScrivi(oTable.Application, sNomeFile, My.Settings.carattereDimensioneDidascalia)
+            End If
+            If bFlag = True Then
                 wordScriviEnter(oTable.Application)
                 wordScrivi(oTable.Application, sEXIF, My.Settings.carattereDimensioneDidascalia)
             End If
         End If
 
+        wordScriviEnter(oTable.Application)
         Return _shape
     End Function
 
@@ -454,32 +410,7 @@ Public Class ActionsLibrary
             _larg = altezzaCM * dRapporto
             myShape.Width = myShape.Application.CentimetersToPoints(_larg)
         End If
-
-      
-
-        '  Else
-        'se è orizzontale allora uso la larghezza impostata e determino l'altezza
-        '     myShape.Width = myShape.Application.CentimetersToPoints(larghezzaCM)
- 
-
-
-
-
     End Sub
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 End Class
 
 

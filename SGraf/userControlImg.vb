@@ -227,7 +227,7 @@ End Enum
 Public Class userControlImg
 
     Private _imageTmb As Image
-
+    Private sFilePath As String
     Private isSelected As Boolean = False
 
     Private sTitolo As String
@@ -385,6 +385,7 @@ Public Class userControlImg
 
         PictureBox1.Image = _imageTmb
         LinkLabelNomeFile.Text = Path.GetFileName(p2)
+        sFilePath = p2
         ToolTip1.SetToolTip(PictureBox1, image.PhysicalDimension.ToString)
         ToolTip1.SetToolTip(LinkLabelNomeFile, p2)
         imageTmbWidth = image.PhysicalDimension.Width
@@ -494,7 +495,7 @@ Public Class userControlImg
             If LabelEXIF.Text <> "" Then LabelEXIF.Text += ", "
             LabelEXIF.Text = LabelEXIF.Text & Trim(sFlash)
         End If
-        leggiContenuto(LinkLabelNomeFile.Text, TextBoxTag)
+        leggiContenuto(sFilePath, TextBoxTag)
         ToolTip1.SetToolTip(LabelEXIF, LabelEXIF.Text)
 
     End Sub
