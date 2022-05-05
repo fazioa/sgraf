@@ -2,28 +2,28 @@
 
 
 Public Class Form1
-
+    Dim log As New XOrseLog
     Private Sub PopolaImmagini(arrayFileNames As String())
         '   lvwImmagini.Items.Clear()
         Dim i As Integer = 0
         Dim dir As DirectoryInfo = New DirectoryInfo("E:\Nuova cartella\tt")
         Dim sFile As String
+        Dim log As New XOrseLog
 
         ' lvwImmagini.LargeImageList = imageList
         For Each sFile In arrayFileNames
             'ImageList.Images.Add(Bitmap.FromFile(file.FullName))
             Try
-                Dim imageItem As New userControlImg(Bitmap.FromFile(sFile), sFile)
+                Dim imageItem As New userControlImg(Bitmap.FromFile(sFile), sFile, My.Settings.fotoLarghezzaTumb, My.Settings.fotoAltezzaTumb)
                 FlowLayoutPanel1.Controls.Add(imageItem)
             Catch ex As Exception
-
+                log.xlogWriteEntry("Inserimento immagine fallito - " & ex.Message, TraceEventType.Critical)
             End Try
             i = i + 1
         Next
         For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
-
+            RemoveHandler child.PictureBox1.MouseDown, AddressOf childs_MouseDown
             AddHandler child.PictureBox1.MouseDown, AddressOf childs_MouseDown
-
             child.LabelNumeroFoto.Text = FlowLayoutPanel1.Controls.GetChildIndex(child) + 1
         Next
     End Sub
@@ -45,66 +45,65 @@ Public Class Form1
     Dim X As Integer = 0
     Dim Y As Integer = 0
     Dim xyMetrics As Integer = 30
+
+
+
     Private Sub childs_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
         'occorre distinguere tra drag&drop e click
-        If X = 0 Then
-            X = Control.MousePosition.X
-        End If
-        If Y = 0 Then
-            Y = Control.MousePosition.Y
-        End If
-
+        Dim source As userControlImg = CType(sender.parent, userControlImg)
         If e.Button = Windows.Forms.MouseButtons.Left Then
-            Dim source As userControlImg = CType(sender.parent, userControlImg)
-            Using bmp As New Bitmap(source.Width, source.Height)
-                source.DrawToBitmap(bmp, New Rectangle(Point.Empty, source.Size))
-                Me.dragcursor = New Cursor(bmp.GetHicon)
-            End Using
-
             Me.dragtype = source.GetType
             Me.DoDragDrop(source, DragDropEffects.Move)
-            Me.dragcursor.Dispose()
         Else
 
         End If
     End Sub
+
 
     Private Sub FlowLayoutPanel1_DragDrop(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles FlowLayoutPanel1.DragDrop
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             'AGGIUNGE IMMAGINE
             Dim filePaths As String() = CType(e.Data.GetData(DataFormats.FileDrop), String())
-            ' For Each filePath As String In filePaths
+            log.xlogWriteEntry("Popola immagini", TraceEventType.Information)
             PopolaImmagini(filePaths)
-            'Next
         Else
-            If (X > 0 And Y > 0) And (Math.Abs(X - Control.MousePosition.X) > xyMetrics Or Math.Abs(Y - Control.MousePosition.Y) > xyMetrics) Then
+            Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
+            Dim target As userControlImg = Me.FlowLayoutPanel1.GetChildAtPoint(Me.FlowLayoutPanel1.PointToClient(New Point(e.X, e.Y)))
+
+            'se l'index del source è uguale all'index del target allora si tratta di un click e non di un drag&drop
+            If (Me.FlowLayoutPanel1.Controls.GetChildIndex(target) <> Me.FlowLayoutPanel1.Controls.GetChildIndex(source)) Then
+                log.xlogWriteEntry("Drag start", TraceEventType.Information)
+                log.xlogWriteEntry(X - Control.MousePosition.X & " - " & Y - Control.MousePosition.Y, TraceEventType.Information)
 
                 'MUOVE IMMAGINE
-                Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
-                Dim target As userControlImg = Me.FlowLayoutPanel1.GetChildAtPoint(Me.FlowLayoutPanel1.PointToClient(New Point(e.X, e.Y)))
+
                 If target IsNot Nothing Then
                     Dim ix As Integer = Me.FlowLayoutPanel1.Controls.GetChildIndex(target)
                     Me.FlowLayoutPanel1.Controls.SetChildIndex(source, ix)
                     renumber()
+                    log.xlogWriteEntry("Drop - target index " & ix, TraceEventType.Information)
                 End If
             Else
-                'Single tratta di un click
-                Dim source As userControlImg = CType(e.Data.GetData(dragtype), userControlImg)
+                'Si tratta di un click
+                log.xlogWriteEntry("Click", TraceEventType.Information)
                 source.selected = Not source.selected
-                Me.Refresh()
+                ' Me.Refresh()
             End If
         End If
-        X = 0
-        Y = 0
     End Sub
 
     Private Sub FlowLayoutPanel1_DragEnter(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles FlowLayoutPanel1.DragEnter
+        ' Non capisco perchè al click entri diverse volte qui dentro
+
         If e.AllowedEffect = DragDropEffects.Move AndAlso e.Data.GetDataPresent(dragtype) Then
             e.Effect = DragDropEffects.Move
+            log.xlogWriteEntry("Drag Enter - Move", TraceEventType.Information)
         ElseIf e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
+            log.xlogWriteEntry("Drag Enter - FileDrop", TraceEventType.Information)
         Else
             e.Effect = DragDropEffects.None
+            log.xlogWriteEntry("Drag Enter - DragDropEffects None", TraceEventType.Information)
         End If
     End Sub
 
@@ -125,6 +124,10 @@ Public Class Form1
     End Sub
 
     Private Sub SvuotaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SvuotaToolStripMenuItem.Click
+        '  While FlowLayoutPanel1.Controls.Count > 0
+        ' Dim ctrl = FlowLayoutPanel1.Controls.Item(0)
+        'ctrl.Dispose()
+        'End While
         FlowLayoutPanel1.Controls.Clear()
     End Sub
 
@@ -187,4 +190,6 @@ Public Class Form1
     Private Sub FlowLayoutPanel1_Click(sender As System.Object, e As System.EventArgs) Handles FlowLayoutPanel1.Click
         clearSelected()
     End Sub
+
+
 End Class

@@ -10,17 +10,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("SGraf")> 
-<Assembly: AssemblyDescription("Software per la generazione di fascicoli fotografici. http://www.xorse.it/orse - NOTA: Richiede Microsoft Word.")> 
+<Assembly: AssemblyTitle("SGraf")>
+<Assembly: AssemblyDescription("Software per la generazione di fascicoli fotografici. http://www.xorse.it/orse - NOTA: Richiede Microsoft Word con licenza attiva.")>
 <Assembly: AssemblyCompany("Antonino Fazio")> 
-<Assembly: AssemblyProduct("SGraf")> 
-<Assembly: AssemblyCopyright("Copyright ©  2016")> 
+<Assembly: AssemblyProduct("SGraf")>
+<Assembly: AssemblyCopyright("Copyright ©  2016-2022")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("c1d79d30-ca8d-43d3-bcbd-5118461439af")> 
+<Assembly: Guid("c1d79d30-ca8d-43d3-bcbd-5118461439af")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.0.0.0")> 
-<Assembly: AssemblyFileVersion("2.2.0.0")> 
+<Assembly: AssemblyVersion("3.0.0.0")>
+<Assembly: AssemblyFileVersion("3.0.0.0")>
 
 <Assembly: NeutralResourcesLanguageAttribute("it-IT")> 

@@ -66,10 +66,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="fotoAltezzaTumb" Type="System.String" Scope="User">
-      <Value Profile="(Default)">240</Value>
+      <Value Profile="(Default)">300</Value>
     </Setting>
     <Setting Name="fotoLarghezzaTumb" Type="System.String" Scope="User">
-      <Value Profile="(Default)">320</Value>
+      <Value Profile="(Default)">315</Value>
     </Setting>
     <Setting Name="bEXIFMarca" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

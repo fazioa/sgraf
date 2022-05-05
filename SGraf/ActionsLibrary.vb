@@ -86,6 +86,7 @@ Public Class ActionsLibrary
         oWord.Selection.TypeText(Text:=valore)
     End Sub
 
+
     Public Sub wordScriviEnter(ByVal oWord As Microsoft.Office.Interop.Word.Application)
         log.xlogWriteEntry("Word - scrive ENTER", TraceEventType.Critical)
         oWord.Selection.TypeParagraph()
@@ -196,6 +197,7 @@ Public Class ActionsLibrary
             'CREAZIONE E RIEMPIMENTO TABELLA
             'posiziono il puntatore a fine documento
             oRng = oDoc.Bookmarks.Item("\endofdoc").Range
+
             'inserisco un'interruzione di pagina
             oRng.InsertBreak(Microsoft.Office.Interop.Word.WdBreakType.wdPageBreak)
             'posiziono il puntatore a fine documento
@@ -276,8 +278,17 @@ Public Class ActionsLibrary
                 oRng = oDoc.Bookmarks.Item("\endofdoc").Range
                 'INCORPORA IMMAGINE
 
-                myShape = inserisciImmagine(oWord, element)
-                scalaImmagine(myShape, element, My.Settings.fotoLarghezzaCM, My.Settings.fotoAltezzaCM)
+
+                Dim sL, sA As Single
+                If (Single.TryParse(My.Settings.fotoLarghezzaCM.Replace(".", ","), sL) And Single.TryParse(My.Settings.fotoAltezzaCM.Replace(".", ","), sA)) Then
+                    Try
+                        myShape = inserisciImmagine(oWord, element)
+                        scalaImmagine(myShape, element, sL, sA)
+                    Catch ex As Exception
+                        log.xlogWriteEntry("Ridimensionamento immagine fallito - Verificare le dimensioni richieste", TraceEventType.Information)
+                    End Try
+
+                End If
 
                 'solo se il fascicolo è descrittivo
                 If My.Settings.tipoFascicolo = "Descrittivo" Then
@@ -334,7 +345,15 @@ Public Class ActionsLibrary
         wordScrivi(oTable.Application, My.Settings.titoloFoto & " " & element.LabelNumeroFoto.Text, My.Settings.carattereDimensioneTitoloFoto)
         wordScriviEnter(oTable.Application)
         Dim _shape As InlineShape = oTable.Application.Selection.InlineShapes.AddPicture(element.sNomeFile, My.Settings.bIncorporaImmagini)
-        scalaImmagine(_shape, element, My.Settings.fotoLarghezzaCM, My.Settings.fotoAltezzaCM)
+        Dim sL, sA As Single
+        If (Single.TryParse(My.Settings.fotoLarghezzaCM.Replace(".", ","), sL) And Single.TryParse(My.Settings.fotoAltezzaCM.Replace(".", ","), sA)) Then
+            Try
+                scalaImmagine(_shape, element, sL, sA)
+            Catch ex As Exception
+                log.xlogWriteEntry("Ridimensionamento immagine fallito - Verificare le dimensioni richieste", TraceEventType.Information)
+            End Try
+
+        End If
 
         'solo se il fascicolo è descrittivo
         If My.Settings.tipoFascicolo = "Descrittivo" Then
@@ -395,21 +414,24 @@ Public Class ActionsLibrary
     End Function
 
     Private Sub scalaImmagine(myShape As InlineShape, element As userControlImg, larghezzaCM As Single, altezzaCM As Single)
-        Dim dRapporto As Double = element.imageTmbWidth / element.imagTmbHeight
+        Dim dRapporto As Double = element.imageWidth / element.imageHeight
         Dim _alt, _larg As Double
 
-        '       If dRapporto < 1 Then
-        If (myShape.Application.PointsToCentimeters(element.PictureBox1.Image.Width) > larghezzaCM) Then
-            myShape.Width = myShape.Application.CentimetersToPoints(larghezzaCM)
-            _alt = larghezzaCM / dRapporto
-            myShape.Height = myShape.Application.CentimetersToPoints(_alt)
-        End If
+        log.xlogWriteEntry("Scala immagine " & element.sNomeFile & " (" & element.imageWidth & " x " & element.imageHeight & ")", TraceEventType.Information)
+        log.xlogWriteEntry("Dimensioni img su doc: " & myShape.Application.PointsToCentimeters(myShape.Width) & " x " & myShape.Application.PointsToCentimeters(myShape.Height), TraceEventType.Information)
 
+        'Riduzione immagine se è necessario - LARGHEZZA
+        myShape.Width = myShape.Application.CentimetersToPoints(larghezzaCM)
+        _alt = larghezzaCM / dRapporto
+        myShape.Height = myShape.Application.CentimetersToPoints(_alt)
+
+        'Riduzione immagine se è necessario  - ALTEZZA
         If (myShape.Application.PointsToCentimeters(myShape.Height) > altezzaCM) Then
             myShape.Height = myShape.Application.CentimetersToPoints(altezzaCM)
             _larg = altezzaCM * dRapporto
             myShape.Width = myShape.Application.CentimetersToPoints(_larg)
         End If
+
     End Sub
 End Class
 
