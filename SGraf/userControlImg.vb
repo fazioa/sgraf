@@ -544,7 +544,7 @@ Public Class userControlImg
             textBox.Text = file.ReadToEnd
             file.Close()
         Catch ex As Exception
-
+            log.xlogWriteEntry("File commento """ & sNomeFile & ".txt" & """ non presente", TraceEventType.Information)
         End Try
     End Sub
 

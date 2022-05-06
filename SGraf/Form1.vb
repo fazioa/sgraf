@@ -124,10 +124,6 @@ Public Class Form1
     End Sub
 
     Private Sub SvuotaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SvuotaToolStripMenuItem.Click
-        '  While FlowLayoutPanel1.Controls.Count > 0
-        ' Dim ctrl = FlowLayoutPanel1.Controls.Item(0)
-        'ctrl.Dispose()
-        'End While
         FlowLayoutPanel1.Controls.Clear()
     End Sub
 
@@ -191,5 +187,10 @@ Public Class Form1
         clearSelected()
     End Sub
 
+    Private Sub SalvaProgettoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalvaProgettoToolStripMenuItem.Click
+        For Each child In FlowLayoutPanel1.Controls
 
+            Dim snomeFile = child
+        Next
+    End Sub
 End Class

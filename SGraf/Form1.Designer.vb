@@ -34,6 +34,8 @@ Partial Class Form1
         Me.SvuotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ApriProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalvaProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -64,7 +66,7 @@ Partial Class Form1
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ApriToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ApriToolStripMenuItem, Me.ApriProgettoToolStripMenuItem, Me.SalvaProgettoToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -72,8 +74,8 @@ Partial Class Form1
         'ApriToolStripMenuItem
         '
         Me.ApriToolStripMenuItem.Name = "ApriToolStripMenuItem"
-        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(105, 22)
-        Me.ApriToolStripMenuItem.Text = "Apri..."
+        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriToolStripMenuItem.Text = "Apri immagini..."
         '
         'StrumentiToolStripMenuItem
         '
@@ -113,6 +115,18 @@ Partial Class Form1
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.AboutToolStripMenuItem.Text = "About..."
         '
+        'ApriProgettoToolStripMenuItem
+        '
+        Me.ApriProgettoToolStripMenuItem.Name = "ApriProgettoToolStripMenuItem"
+        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriProgettoToolStripMenuItem.Text = "Apri progetto..."
+        '
+        'SalvaProgettoToolStripMenuItem
+        '
+        Me.SalvaProgettoToolStripMenuItem.Name = "SalvaProgettoToolStripMenuItem"
+        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalvaProgettoToolStripMenuItem.Text = "Salva progetto..."
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -141,5 +155,6 @@ Partial Class Form1
     Friend WithEvents GeneraFascicoloFotograficoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-
+    Friend WithEvents ApriProgettoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SalvaProgettoToolStripMenuItem As ToolStripMenuItem
 End Class
