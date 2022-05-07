@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class userControlImg
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class userControlImg
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(userControlImg))
@@ -31,7 +31,6 @@ Partial Class userControlImg
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.LabelEXIF = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.NTextBox1 = New Nevron.UI.WinForm.Controls.NTextBox()
         Me.PictureBoxTick = New System.Windows.Forms.PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -122,40 +121,6 @@ Partial Class userControlImg
         Me.FlowLayoutPanel1.TabIndex = 8
         Me.FlowLayoutPanel1.WrapContents = False
         '
-        'NTextBox1
-        '
-        Me.NTextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.NTextBox1.Border.BaseColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.NTextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.NTextBox1.Location = New System.Drawing.Point(0, 0)
-        Me.NTextBox1.Name = "NTextBox1"
-        Me.NTextBox1.Palette.Border = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
-        Me.NTextBox1.Palette.Caption = System.Drawing.Color.FromArgb(CType(CType(86, Byte), Integer), CType(CType(86, Byte), Integer), CType(CType(86, Byte), Integer))
-        Me.NTextBox1.Palette.CaptionText = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.NTextBox1.Palette.CheckedDark = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.NTextBox1.Palette.CheckedLight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(69, Byte), Integer))
-        Me.NTextBox1.Palette.Control = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.NTextBox1.Palette.ControlBorder = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
-        Me.NTextBox1.Palette.ControlDark = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(225, Byte), Integer))
-        Me.NTextBox1.Palette.ControlLight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.NTextBox1.Palette.ControlText = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.NTextBox1.Palette.Highlight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.NTextBox1.Palette.HighlightDark = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(46, Byte), Integer))
-        Me.NTextBox1.Palette.HighlightLight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.NTextBox1.Palette.HighlightText = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.NTextBox1.Palette.Menu = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.NTextBox1.Palette.MenuText = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.NTextBox1.Palette.PressedDark = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(69, Byte), Integer))
-        Me.NTextBox1.Palette.PressedLight = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.NTextBox1.Palette.Scheme = Nevron.UI.WinForm.Controls.ColorScheme.VistaPlus
-        Me.NTextBox1.Palette.SecondaryBorder = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.NTextBox1.Palette.SelectedBorder = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
-        Me.NTextBox1.Palette.Window = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.NTextBox1.Palette.WindowText = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.NTextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.NTextBox1.TabIndex = 0
-        Me.NTextBox1.Text = "NTextBox1"
-        '
         'PictureBoxTick
         '
         Me.PictureBoxTick.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -198,5 +163,4 @@ Partial Class userControlImg
     Friend WithEvents LabelEXIF As Label
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents PictureBoxTick As System.Windows.Forms.PictureBox
-    Friend WithEvents NTextBox1 As Nevron.UI.WinForm.Controls.NTextBox
 End Class

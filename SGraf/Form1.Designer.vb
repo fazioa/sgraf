@@ -28,14 +28,16 @@ Partial Class Form1
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ApriToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ApriProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SalvaProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StrumentiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GeneraFascicoloFotograficoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpzioniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SvuotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ApriProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SalvaProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveFileDialogProject = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenFileDialogProject = New System.Windows.Forms.OpenFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -77,6 +79,18 @@ Partial Class Form1
         Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ApriToolStripMenuItem.Text = "Apri immagini..."
         '
+        'ApriProgettoToolStripMenuItem
+        '
+        Me.ApriProgettoToolStripMenuItem.Name = "ApriProgettoToolStripMenuItem"
+        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriProgettoToolStripMenuItem.Text = "Apri progetto..."
+        '
+        'SalvaProgettoToolStripMenuItem
+        '
+        Me.SalvaProgettoToolStripMenuItem.Name = "SalvaProgettoToolStripMenuItem"
+        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalvaProgettoToolStripMenuItem.Text = "Salva progetto..."
+        '
         'StrumentiToolStripMenuItem
         '
         Me.StrumentiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GeneraFascicoloFotograficoToolStripMenuItem, Me.OpzioniToolStripMenuItem, Me.SvuotaToolStripMenuItem})
@@ -115,17 +129,19 @@ Partial Class Form1
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.AboutToolStripMenuItem.Text = "About..."
         '
-        'ApriProgettoToolStripMenuItem
+        'SaveFileDialogProject
         '
-        Me.ApriProgettoToolStripMenuItem.Name = "ApriProgettoToolStripMenuItem"
-        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ApriProgettoToolStripMenuItem.Text = "Apri progetto..."
+        Me.SaveFileDialogProject.DefaultExt = "sgraf"
+        Me.SaveFileDialogProject.FileName = "project"
+        Me.SaveFileDialogProject.Filter = "SGRAF projects (*.sgraf)|*.sgraf"
+        Me.SaveFileDialogProject.RestoreDirectory = True
+        Me.SaveFileDialogProject.Title = "Salva progetto"
         '
-        'SalvaProgettoToolStripMenuItem
+        'OpenFileDialogProject
         '
-        Me.SalvaProgettoToolStripMenuItem.Name = "SalvaProgettoToolStripMenuItem"
-        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.SalvaProgettoToolStripMenuItem.Text = "Salva progetto..."
+        Me.OpenFileDialogProject.DefaultExt = "sgraf"
+        Me.OpenFileDialogProject.FileName = "project"
+        Me.OpenFileDialogProject.Filter = "SGRAF projects (*.sgraf)|*.sgraf"
         '
         'Form1
         '
@@ -157,4 +173,6 @@ Partial Class Form1
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ApriProgettoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SalvaProgettoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveFileDialogProject As SaveFileDialog
+    Friend WithEvents OpenFileDialogProject As OpenFileDialog
 End Class

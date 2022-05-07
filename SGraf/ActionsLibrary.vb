@@ -25,7 +25,7 @@ Class XOrseLog
     End Sub
 
     Public Sub xlogWriteEntry(ByVal sMsg As String, ByVal livello As System.Diagnostics.TraceEventType)
-#If DEBUG Then
+        '#If DEBUG Then
         Dim sMessaggio As String = Now.ToLocalTime + " " + sMsg
         Try
             My.Application.Log.WriteEntry(sMessaggio, livello)
@@ -33,10 +33,10 @@ Class XOrseLog
 
         End Try
         '  LogForm.add(sMessaggio)
-#End If
+        '#End If
     End Sub
     Public Sub xlogWriteException(ByVal ex As Exception, ByVal livello As System.Diagnostics.TraceEventType, ByVal addInfo As String)
-#If DEBUG Then
+        '#If DEBUG Then
         Dim sMessaggio As String = "Gestione errore: " & addInfo & " - livello: " & livello.ToString & " - messaggio sistema: " & ex.ToString
         Try
             My.Application.Log.WriteException(ex, livello, addInfo)
@@ -45,14 +45,12 @@ Class XOrseLog
         End Try
 
         ' LogForm.add(sMessaggio)
-#End If
+        '#End If
     End Sub
 End Class
 
 
 Public Class ActionsLibrary
-
-
 
     Dim log As New XOrseLog
     'indica lo stato dell'applicazione. In caso di cancellazione del DB indica all'applicaizone di uscire dall'ordine di servizio corrente
@@ -153,11 +151,11 @@ Public Class ActionsLibrary
             '   wordScriviSegnalibro(oWord, "nuovaPagina", "", My.Settings.carattereDimensioneBase)
 
             wordscriviPagineFoto(oWord, controlCollection)
-       
 
-        ' wordAttivaDocumento(oWord)
-        oWord.Visible = True
-        oWord.Activate()
+
+            ' wordAttivaDocumento(oWord)
+            oWord.Visible = True
+            oWord.Activate()
             oWord = Nothing
         Catch ex As COMException
             MsgBox("La copia Microsoft Office potrebbe non essere registrato ed attiva", MsgBoxStyle.Critical, "Errore")
@@ -324,6 +322,8 @@ Public Class ActionsLibrary
         End If
     End Sub
 
+
+
     Private Function inserisciTabella(oDoc As Microsoft.Office.Interop.Word.Document, oWord As Microsoft.Office.Interop.Word.Application)
         Return oDoc.Tables.Add(oWord.Selection.Range, My.Settings.disposizioneRighe, My.Settings.disposizioneColonne)
     End Function
@@ -433,7 +433,151 @@ Public Class ActionsLibrary
         End If
 
     End Sub
+
+    Shared Sub salvaTxtFile(sNomeFile As String, sValore As String)
+        Dim file As New StreamWriter(sNomeFile)
+        file.Write(sValore)
+        file.Flush()
+        file.Close()
+    End Sub
+
+    Friend Shared Function openTxtFile(fileName As String) As String
+        Dim log As New XOrseLog
+        Dim sTxtFile As String = ""
+        Try
+            Dim file As New StreamReader(fileName)
+            sTxtFile = file.ReadToEnd
+            file.Close()
+        Catch ex As Exception
+            log.xlogWriteEntry("Errore di lettura del file pro """ & fileName, TraceEventType.Error)
+        End Try
+        Return sTxtFile
+
+    End Function
+
 End Class
 
+Public Class ImagesProjectClass
+    Public Property sOggetto() As String
+        Get
+            Return _sOggetto
+        End Get
+        Set
+            _sOggetto = Value
+        End Set
+    End Property
+    Private _sOggetto As String
 
+    Public Property sDettagliocontenuto() As String
+        Get
+            Return _sDettagliocontenuto
+        End Get
+        Set
+            _sDettagliocontenuto = Value
+        End Set
+    End Property
+    Private _sDettagliocontenuto As String
+
+    Public Property sTitoloFoto() As String
+        Get
+            Return _sTitoloFoto
+        End Get
+        Set
+            _sTitoloFoto = Value
+        End Set
+    End Property
+    Private _sTitoloFoto As String
+    Public Property iColonne() As Integer
+        Get
+            Return _iColonne
+        End Get
+        Set
+            _iColonne = Value
+        End Set
+    End Property
+    Private _iColonne As Integer
+
+    Public Property iRighe() As Integer
+        Get
+            Return _iRighe
+        End Get
+        Set
+            _iRighe = Value
+        End Set
+    End Property
+    Private _iRighe As Integer
+
+    Public Property iDimensioneCarattere() As Integer
+        Get
+            Return _iDimensioneCarattere
+        End Get
+        Set
+            _iDimensioneCarattere = Value
+        End Set
+    End Property
+    Private _iDimensioneCarattere As Integer
+
+    Public Property iDimensioneTitolo() As Integer
+        Get
+            Return _iDimensioneTitolo
+        End Get
+        Set
+            _iDimensioneTitolo = Value
+        End Set
+    End Property
+    Private _iDimensioneTitolo As Integer
+
+    Public Property iDimensioneDidascalia() As Integer
+        Get
+            Return _iDimensioneDidascalia
+        End Get
+        Set
+            _iDimensioneDidascalia = Value
+        End Set
+    End Property
+    Private _iDimensioneDidascalia As Integer
+
+    Public Property ifotoLarghezzaCM() As Integer
+        Get
+            Return _ifotoLarghezzaCM
+        End Get
+        Set
+            _ifotoLarghezzaCM = Value
+        End Set
+    End Property
+    Private _ifotoLarghezzaCM As Integer
+
+    Public Property ifotoAltezzaCM() As Integer
+        Get
+            Return _ifotoAltezzaCM
+        End Get
+        Set
+            _ifotoAltezzaCM = Value
+        End Set
+    End Property
+    Private _ifotoAltezzaCM As Integer
+
+    Public Property sTipoFascicolo() As String
+        Get
+            Return _sTipoFascicolo
+        End Get
+        Set
+            _sTipoFascicolo = Value
+        End Set
+    End Property
+    Private _sTipoFascicolo As String
+
+    Public Property sFileNames() As List(Of String)
+        Get
+            Return _sFileNames
+        End Get
+        Set
+            _sFileNames = Value
+        End Set
+    End Property
+    Private _sFileNames As List(Of String)
+
+
+
+End Class
 

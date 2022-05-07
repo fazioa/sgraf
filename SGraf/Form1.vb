@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-
+Imports Newtonsoft.Json
 
 Public Class Form1
     Dim log As New XOrseLog
@@ -46,7 +46,14 @@ Public Class Form1
     Dim Y As Integer = 0
     Dim xyMetrics As Integer = 30
 
+    Public Sub New()
 
+        ' La chiamata è richiesta dalla finestra di progettazione.
+        InitializeComponent()
+
+        ' Aggiungere le eventuali istruzioni di inizializzazione dopo la chiamata a InitializeComponent().
+
+    End Sub
 
     Private Sub childs_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs)
         'occorre distinguere tra drag&drop e click
@@ -73,10 +80,8 @@ Public Class Form1
             'se l'index del source è uguale all'index del target allora si tratta di un click e non di un drag&drop
             If (Me.FlowLayoutPanel1.Controls.GetChildIndex(target) <> Me.FlowLayoutPanel1.Controls.GetChildIndex(source)) Then
                 log.xlogWriteEntry("Drag start", TraceEventType.Information)
-                log.xlogWriteEntry(X - Control.MousePosition.X & " - " & Y - Control.MousePosition.Y, TraceEventType.Information)
 
                 'MUOVE IMMAGINE
-
                 If target IsNot Nothing Then
                     Dim ix As Integer = Me.FlowLayoutPanel1.Controls.GetChildIndex(target)
                     Me.FlowLayoutPanel1.Controls.SetChildIndex(source, ix)
@@ -85,7 +90,6 @@ Public Class Form1
                 End If
             Else
                 'Si tratta di un click
-                log.xlogWriteEntry("Click", TraceEventType.Information)
                 source.selected = Not source.selected
                 ' Me.Refresh()
             End If
@@ -188,9 +192,91 @@ Public Class Form1
     End Sub
 
     Private Sub SalvaProgettoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalvaProgettoToolStripMenuItem.Click
-        For Each child In FlowLayoutPanel1.Controls
+        Dim progetto As New ImagesProjectClass
 
-            Dim snomeFile = child
+        'leggo le preferenze
+        progetto.sOggetto = My.Settings.oggetto
+        progetto.sTitoloFoto = My.Settings.titoloFoto
+        progetto.sDettagliocontenuto = My.Settings.contenutoDettaglio
+        progetto.sTipoFascicolo = My.Settings.tipoFascicolo
+
+        progetto.iColonne = My.Settings.disposizioneColonne
+        progetto.iRighe = My.Settings.disposizioneRighe
+
+        progetto.ifotoAltezzaCM = My.Settings.fotoAltezzaCM
+        progetto.ifotoLarghezzaCM = My.Settings.fotoLarghezzaCM
+
+        progetto.iDimensioneCarattere = My.Settings.carattereDimensioneBase
+        progetto.iDimensioneDidascalia = My.Settings.carattereDimensioneDidascalia
+        progetto.iDimensioneTitolo = My.Settings.carattereDimensioneTitoloFoto
+
+        progetto.sFileNames = New List(Of String)()
+        For Each child As userControlImg In FlowLayoutPanel1.Controls
+            progetto.sFileNames.Add(child.sNomeFile)
         Next
+
+        'serializza
+        Dim jsonTxt As String = JsonConvert.SerializeObject(progetto, Formatting.Indented)
+        Dim result As DialogResult = SaveFileDialogProject.ShowDialog()
+
+        If result = DialogResult.OK Then
+            'salva file testo
+            ActionsLibrary.salvaTxtFile(SaveFileDialogProject.FileName, jsonTxt)
+        End If
+
+    End Sub
+
+    Private Sub ApriProgettoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ApriProgettoToolStripMenuItem.Click
+        Dim result As DialogResult = OpenFileDialogProject.ShowDialog()
+        If result = DialogResult.OK Then
+
+            'dialog apertura file
+            Dim sTxtResult = ActionsLibrary.openTxtFile(OpenFileDialogProject.FileName)
+            'procede solo se il file non è vuoto
+            If sTxtResult.Length <= 0 Then
+                MsgBox("File vuoto", MsgBoxStyle.DefaultButton1, "Apertura progetto")
+                log.xlogWriteEntry("File non valido: " & OpenFileDialogProject.FileName, TraceEventType.Information)
+            Else
+                Dim progetto As New ImagesProjectClass
+
+                Try
+                    'deserializza
+                    progetto = JsonConvert.DeserializeObject(Of ImagesProjectClass)(sTxtResult)
+
+                    'leggo le preferenze
+                    My.Settings.oggetto = progetto.sOggetto
+                    My.Settings.titoloFoto = progetto.sTitoloFoto
+                    My.Settings.contenutoDettaglio = progetto.sDettagliocontenuto
+                    My.Settings.tipoFascicolo = progetto.sTipoFascicolo
+
+                    My.Settings.disposizioneColonne = progetto.iColonne
+                    My.Settings.disposizioneRighe = progetto.iRighe
+
+                    My.Settings.fotoAltezzaCM = progetto.ifotoAltezzaCM
+                    My.Settings.fotoLarghezzaCM = progetto.ifotoLarghezzaCM
+
+                    My.Settings.carattereDimensioneBase = progetto.iDimensioneCarattere
+                    My.Settings.carattereDimensioneDidascalia = progetto.iDimensioneDidascalia
+                    My.Settings.carattereDimensioneTitoloFoto = progetto.iDimensioneTitolo
+
+
+                    'elimina tutte le immagini presenti
+                    FlowLayoutPanel1.Controls.Clear()
+
+                    'ripopola la lista immagini
+                    PopolaImmagini(progetto.sFileNames.ToArray)
+                Catch ex As Exception
+                    MsgBox("File non valido - " & ex.Message, MsgBoxStyle.DefaultButton1, "Apertura progetto")
+                    log.xlogWriteException(ex, TraceEventType.Error, "Errore di apertura file")
+                End Try
+
+            End If
+        End If
+
+
+
+
+
     End Sub
 End Class
+
