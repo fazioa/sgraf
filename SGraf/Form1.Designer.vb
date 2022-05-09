@@ -76,19 +76,19 @@ Partial Class Form1
         'ApriToolStripMenuItem
         '
         Me.ApriToolStripMenuItem.Name = "ApriToolStripMenuItem"
-        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.ApriToolStripMenuItem.Text = "Apri immagini..."
         '
         'ApriProgettoToolStripMenuItem
         '
         Me.ApriProgettoToolStripMenuItem.Name = "ApriProgettoToolStripMenuItem"
-        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.ApriProgettoToolStripMenuItem.Text = "Apri progetto..."
         '
         'SalvaProgettoToolStripMenuItem
         '
         Me.SalvaProgettoToolStripMenuItem.Name = "SalvaProgettoToolStripMenuItem"
-        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.SalvaProgettoToolStripMenuItem.Text = "Salva progetto..."
         '
         'StrumentiToolStripMenuItem
@@ -153,7 +153,7 @@ Partial Class Form1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
-        Me.Text = "SGraf - Generazione fascicoli fotografici"
+        Me.Text = "SGraf - Generatore fascicoli fotografici"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)

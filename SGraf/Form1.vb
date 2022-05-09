@@ -272,11 +272,28 @@ Public Class Form1
 
             End If
         End If
+    End Sub
 
 
+    Dim ZoomValue As Integer
+    Private Sub FlowLayoutPanel1_MouseWheel(sender As Object, e As MouseEventArgs) Handles FlowLayoutPanel1.MouseWheel
+        'check if control is being held down
+        If CtrlIsDown Then
+            'evaluate the delta's sign and call the appropriate zoom command
+            Select Case Math.Sign(e.Delta)
+                Case Is < 0
+                    ZoomValue = ZoomValue + 1
+                Case Is > 0
+                    ZoomValue = ZoomValue - 1
+            End Select
+        End If
+        log.xlogWriteEntry("zoom" & ZoomValue & " Ctrl " & CtrlIsDown, TraceEventType.Information)
+    End Sub
 
 
-
+    Dim CtrlIsDown As Boolean
+    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown, Me.KeyUp
+        CtrlIsDown = e.Control
     End Sub
 End Class
 
