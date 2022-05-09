@@ -319,7 +319,7 @@ Public Class userControlImg
             If isSelected Then
                 Log.xlogWriteEntry("Select " & Path.GetFileName(sFilePath), TraceEventType.Information)
                 PictureBoxTick.Parent = PictureBox1
-                PictureBoxTick.Top = PictureBox1.Location.Y-5
+                PictureBoxTick.Top = PictureBox1.Location.Y - 5
                 PictureBoxTick.Left = PictureBox1.Location.X + PictureBox1.Width - PictureBoxTick.Width - 42
 
                 PictureBoxTick.Visible = True
@@ -334,7 +334,7 @@ Public Class userControlImg
     Dim pixelColor As Color
     Dim r, g, b As Byte
 
-    
+
 
     Public Function IngAC_IMMAGINE_LUMINOSITA(ByVal Immagine As Bitmap, ByVal Luminosita As Single) As Bitmap
         'luminosità range [-1,+1]=>[0,100]
@@ -548,7 +548,6 @@ Public Class userControlImg
         End Try
     End Sub
 
-
     Private Sub LinkLabelNomeFile_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabelNomeFile.LinkClicked
         clickFoto(sNomeFile)
     End Sub
@@ -556,19 +555,5 @@ Public Class userControlImg
     Private Sub clickFoto(sLink As String)
         Process.Start(sLink)
     End Sub
-
-
-
-
-    Private Sub userControlImg_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'For Each ctrl As Control In Me.Controls
-        '    AddHandler ctrl.Click, AddressOf Me.Me_Click
-        'Next ctrl
-
-        'AddHandler Me.MouseDown, AddressOf Me.Me_Click
-    End Sub
-
-
-
 
 End Class

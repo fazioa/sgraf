@@ -24,6 +24,7 @@ Public Class Form1
         For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
             RemoveHandler child.PictureBox1.MouseDown, AddressOf childs_MouseDown
             AddHandler child.PictureBox1.MouseDown, AddressOf childs_MouseDown
+
             child.LabelNumeroFoto.Text = FlowLayoutPanel1.Controls.GetChildIndex(child) + 1
         Next
     End Sub
@@ -171,6 +172,9 @@ Public Class Form1
         form.ShowDialog()
     End Sub
 
+    Dim CtrlIsDown As Boolean
+
+
     Private Sub FlowLayoutPanel1_PreviewKeyDown(sender As System.Object, e As System.Windows.Forms.PreviewKeyDownEventArgs) Handles FlowLayoutPanel1.PreviewKeyDown
         If e.KeyCode = Keys.Delete Then
             Dim index As Integer
@@ -277,23 +281,40 @@ Public Class Form1
 
     Dim ZoomValue As Integer
     Private Sub FlowLayoutPanel1_MouseWheel(sender As Object, e As MouseEventArgs) Handles FlowLayoutPanel1.MouseWheel
+
         'check if control is being held down
-        If CtrlIsDown Then
+        If My.Computer.Keyboard.CtrlKeyDown Then
+            CtrlIsDown = True
             'evaluate the delta's sign and call the appropriate zoom command
             Select Case Math.Sign(e.Delta)
                 Case Is < 0
-                    ZoomValue = ZoomValue + 1
+                    ZoomValue = -2
                 Case Is > 0
-                    ZoomValue = ZoomValue - 1
+                    ZoomValue = 2
             End Select
+            'ridimensiona i controlli immagine. Lo scorrimento automatico viene momentaneamente disabilitato
+            log.xlogWriteEntry("Zoom " & ZoomValue & "%", TraceEventType.Information)
+            FlowLayoutPanel1.AutoScroll = False
+            imgRedraw(ZoomValue)
+            FlowLayoutPanel1.AutoScroll = True
         End If
-        log.xlogWriteEntry("zoom" & ZoomValue & " Ctrl " & CtrlIsDown, TraceEventType.Information)
-    End Sub
+        CtrlIsDown = False
 
 
-    Dim CtrlIsDown As Boolean
-    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown, Me.KeyUp
-        CtrlIsDown = e.Control
     End Sub
+
+    Private Sub imgRedraw(zoomPercent As Double)
+
+        My.Settings.fotoAltezzaTumb = CInt(My.Settings.fotoAltezzaTumb * (1 + zoomPercent / 100))
+        My.Settings.fotoLarghezzaTumb = CInt(My.Settings.fotoLarghezzaTumb * (1 + zoomPercent / 100))
+        If (My.Settings.fotoAltezzaTumb > 200 And My.Settings.fotoLarghezzaTumb > 200) Then
+            For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
+                child.Height = My.Settings.fotoAltezzaTumb
+                child.Width = My.Settings.fotoLarghezzaTumb
+            Next
+        End If
+
+    End Sub
+
 End Class
 
