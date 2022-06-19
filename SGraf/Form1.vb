@@ -133,7 +133,7 @@ Public Class Form1
     End Sub
 
     Private Sub OpzioniToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpzioniToolStripMenuItem.Click
-        Dim form As New FPreferenze
+        Dim form As New FSetup
         form.ShowDialog()
     End Sub
 

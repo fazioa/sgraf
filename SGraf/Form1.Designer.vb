@@ -30,6 +30,9 @@ Partial Class Form1
         Me.ApriToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ApriProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalvaProgettoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VisualizzazioneToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StrumentiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GeneraFascicoloFotograficoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpzioniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,9 +41,7 @@ Partial Class Form1
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialogProject = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialogProject = New System.Windows.Forms.OpenFileDialog()
-        Me.VisualizzazioneToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AumentaMiniatureCtrlScrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PreferenzeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,24 +80,43 @@ Partial Class Form1
         'ApriToolStripMenuItem
         '
         Me.ApriToolStripMenuItem.Name = "ApriToolStripMenuItem"
-        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.ApriToolStripMenuItem.Text = "Apri immagini..."
         '
         'ApriProgettoToolStripMenuItem
         '
         Me.ApriProgettoToolStripMenuItem.Name = "ApriProgettoToolStripMenuItem"
-        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.ApriProgettoToolStripMenuItem.Text = "Apri progetto..."
         '
         'SalvaProgettoToolStripMenuItem
         '
         Me.SalvaProgettoToolStripMenuItem.Name = "SalvaProgettoToolStripMenuItem"
-        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.SalvaProgettoToolStripMenuItem.Text = "Salva progetto..."
+        '
+        'VisualizzazioneToolStripMenuItem
+        '
+        Me.VisualizzazioneToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AumentaMiniatureCtrlScrollToolStripMenuItem, Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem})
+        Me.VisualizzazioneToolStripMenuItem.Name = "VisualizzazioneToolStripMenuItem"
+        Me.VisualizzazioneToolStripMenuItem.Size = New System.Drawing.Size(97, 20)
+        Me.VisualizzazioneToolStripMenuItem.Text = "Visualizzazione"
+        '
+        'AumentaMiniatureCtrlScrollToolStripMenuItem
+        '
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Name = "AumentaMiniatureCtrlScrollToolStripMenuItem"
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Text = "Aumenta miniature [Ctrl + scroll]"
+        '
+        'DiminuisciMiniatureCtrlScrollToolStripMenuItem
+        '
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Name = "DiminuisciMiniatureCtrlScrollToolStripMenuItem"
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Text = "Diminuisci miniature [Ctrl + scroll]"
         '
         'StrumentiToolStripMenuItem
         '
-        Me.StrumentiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GeneraFascicoloFotograficoToolStripMenuItem, Me.OpzioniToolStripMenuItem, Me.SvuotaToolStripMenuItem})
+        Me.StrumentiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GeneraFascicoloFotograficoToolStripMenuItem, Me.OpzioniToolStripMenuItem, Me.PreferenzeToolStripMenuItem, Me.SvuotaToolStripMenuItem})
         Me.StrumentiToolStripMenuItem.Name = "StrumentiToolStripMenuItem"
         Me.StrumentiToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
         Me.StrumentiToolStripMenuItem.Text = "Strumenti"
@@ -111,7 +131,7 @@ Partial Class Form1
         '
         Me.OpzioniToolStripMenuItem.Name = "OpzioniToolStripMenuItem"
         Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
-        Me.OpzioniToolStripMenuItem.Text = "Opzioni..."
+        Me.OpzioniToolStripMenuItem.Text = "Setup..."
         '
         'SvuotaToolStripMenuItem
         '
@@ -146,24 +166,11 @@ Partial Class Form1
         Me.OpenFileDialogProject.FileName = "project"
         Me.OpenFileDialogProject.Filter = "SGRAF projects (*.sgraf)|*.sgraf"
         '
-        'VisualizzazioneToolStripMenuItem
+        'PreferenzeToolStripMenuItem
         '
-        Me.VisualizzazioneToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AumentaMiniatureCtrlScrollToolStripMenuItem, Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem})
-        Me.VisualizzazioneToolStripMenuItem.Name = "VisualizzazioneToolStripMenuItem"
-        Me.VisualizzazioneToolStripMenuItem.Size = New System.Drawing.Size(97, 20)
-        Me.VisualizzazioneToolStripMenuItem.Text = "Visualizzazione"
-        '
-        'AumentaMiniatureCtrlScrollToolStripMenuItem
-        '
-        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Name = "AumentaMiniatureCtrlScrollToolStripMenuItem"
-        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
-        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Text = "Aumenta miniature [Ctrl + scroll]"
-        '
-        'DiminuisciMiniatureCtrlScrollToolStripMenuItem
-        '
-        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Name = "DiminuisciMiniatureCtrlScrollToolStripMenuItem"
-        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
-        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Text = "Diminuisci miniature [Ctrl + scroll]"
+        Me.PreferenzeToolStripMenuItem.Name = "PreferenzeToolStripMenuItem"
+        Me.PreferenzeToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
+        Me.PreferenzeToolStripMenuItem.Text = "Preferenze..."
         '
         'Form1
         '
@@ -200,4 +207,5 @@ Partial Class Form1
     Friend WithEvents VisualizzazioneToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AumentaMiniatureCtrlScrollToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DiminuisciMiniatureCtrlScrollToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PreferenzeToolStripMenuItem As ToolStripMenuItem
 End Class
