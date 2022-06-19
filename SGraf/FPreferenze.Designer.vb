@@ -395,7 +395,7 @@ Partial Class FPreferenze
         Me.TextBox18.Name = "TextBox18"
         Me.TextBox18.Size = New System.Drawing.Size(28, 20)
         Me.TextBox18.TabIndex = 1
-        Me.TextBox18.Text = Global.SGraf.My.MySettings.Default.fotoLarghezzaTumb
+        Me.TextBox18.Text = Global.SGraf.My.MySettings.Default.fotoLarghezzaThumb
         '
         'Label14
         '
@@ -413,7 +413,7 @@ Partial Class FPreferenze
         Me.TextBox19.Name = "TextBox19"
         Me.TextBox19.Size = New System.Drawing.Size(28, 20)
         Me.TextBox19.TabIndex = 0
-        Me.TextBox19.Text = Global.SGraf.My.MySettings.Default.fotoAltezzaTumb
+        Me.TextBox19.Text = Global.SGraf.My.MySettings.Default.fotoAltezzaThumb
         '
         'Label21
         '

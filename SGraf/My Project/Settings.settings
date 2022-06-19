@@ -65,10 +65,10 @@
     <Setting Name="bMemorizzaDidascalia" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="fotoAltezzaTumb" Type="System.String" Scope="User">
+    <Setting Name="fotoAltezzaThumb" Type="System.String" Scope="User">
       <Value Profile="(Default)">300</Value>
     </Setting>
-    <Setting Name="fotoLarghezzaTumb" Type="System.String" Scope="User">
+    <Setting Name="fotoLarghezzaThumb" Type="System.String" Scope="User">
       <Value Profile="(Default)">315</Value>
     </Setting>
     <Setting Name="bEXIFMarca" Type="System.Boolean" Scope="User">
@@ -100,6 +100,12 @@
     </Setting>
     <Setting Name="bNomeFile" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="zoomMiniaturaDefaultMenu" Type="System.String" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="zoomMiniaturaDefaultMouse" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

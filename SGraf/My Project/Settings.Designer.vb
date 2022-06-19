@@ -309,24 +309,24 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("300")>  _
-        Public Property fotoAltezzaTumb() As String
+        Public Property fotoAltezzaThumb() As String
             Get
-                Return CType(Me("fotoAltezzaTumb"),String)
+                Return CType(Me("fotoAltezzaThumb"),String)
             End Get
             Set
-                Me("fotoAltezzaTumb") = value
+                Me("fotoAltezzaThumb") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("315")>  _
-        Public Property fotoLarghezzaTumb() As String
+        Public Property fotoLarghezzaThumb() As String
             Get
-                Return CType(Me("fotoLarghezzaTumb"),String)
+                Return CType(Me("fotoLarghezzaThumb"),String)
             End Get
             Set
-                Me("fotoLarghezzaTumb") = value
+                Me("fotoLarghezzaThumb") = value
             End Set
         End Property
         
@@ -447,6 +447,30 @@ Namespace My
             End Get
             Set
                 Me("bNomeFile") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("30")>  _
+        Public Property zoomMiniaturaDefaultMenu() As String
+            Get
+                Return CType(Me("zoomMiniaturaDefaultMenu"),String)
+            End Get
+            Set
+                Me("zoomMiniaturaDefaultMenu") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+        Public Property zoomMiniaturaDefaultMouse() As String
+            Get
+                Return CType(Me("zoomMiniaturaDefaultMouse"),String)
+            End Get
+            Set
+                Me("zoomMiniaturaDefaultMouse") = value
             End Set
         End Property
     End Class

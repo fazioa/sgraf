@@ -38,6 +38,9 @@ Partial Class Form1
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialogProject = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialogProject = New System.Windows.Forms.OpenFileDialog()
+        Me.VisualizzazioneToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -59,7 +62,7 @@ Partial Class Form1
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.StrumentiToolStripMenuItem, Me.ToolStripMenuItem1})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.VisualizzazioneToolStripMenuItem, Me.StrumentiToolStripMenuItem, Me.ToolStripMenuItem1})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1100, 24)
@@ -76,19 +79,19 @@ Partial Class Form1
         'ApriToolStripMenuItem
         '
         Me.ApriToolStripMenuItem.Name = "ApriToolStripMenuItem"
-        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.ApriToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ApriToolStripMenuItem.Text = "Apri immagini..."
         '
         'ApriProgettoToolStripMenuItem
         '
         Me.ApriProgettoToolStripMenuItem.Name = "ApriProgettoToolStripMenuItem"
-        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.ApriProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ApriProgettoToolStripMenuItem.Text = "Apri progetto..."
         '
         'SalvaProgettoToolStripMenuItem
         '
         Me.SalvaProgettoToolStripMenuItem.Name = "SalvaProgettoToolStripMenuItem"
-        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.SalvaProgettoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SalvaProgettoToolStripMenuItem.Text = "Salva progetto..."
         '
         'StrumentiToolStripMenuItem
@@ -143,6 +146,25 @@ Partial Class Form1
         Me.OpenFileDialogProject.FileName = "project"
         Me.OpenFileDialogProject.Filter = "SGRAF projects (*.sgraf)|*.sgraf"
         '
+        'VisualizzazioneToolStripMenuItem
+        '
+        Me.VisualizzazioneToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AumentaMiniatureCtrlScrollToolStripMenuItem, Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem})
+        Me.VisualizzazioneToolStripMenuItem.Name = "VisualizzazioneToolStripMenuItem"
+        Me.VisualizzazioneToolStripMenuItem.Size = New System.Drawing.Size(97, 20)
+        Me.VisualizzazioneToolStripMenuItem.Text = "Visualizzazione"
+        '
+        'AumentaMiniatureCtrlScrollToolStripMenuItem
+        '
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Name = "AumentaMiniatureCtrlScrollToolStripMenuItem"
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.AumentaMiniatureCtrlScrollToolStripMenuItem.Text = "Aumenta miniature [Ctrl + scroll]"
+        '
+        'DiminuisciMiniatureCtrlScrollToolStripMenuItem
+        '
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Name = "DiminuisciMiniatureCtrlScrollToolStripMenuItem"
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+        Me.DiminuisciMiniatureCtrlScrollToolStripMenuItem.Text = "Diminuisci miniature [Ctrl + scroll]"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -175,4 +197,7 @@ Partial Class Form1
     Friend WithEvents SalvaProgettoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SaveFileDialogProject As SaveFileDialog
     Friend WithEvents OpenFileDialogProject As OpenFileDialog
+    Friend WithEvents VisualizzazioneToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AumentaMiniatureCtrlScrollToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DiminuisciMiniatureCtrlScrollToolStripMenuItem As ToolStripMenuItem
 End Class

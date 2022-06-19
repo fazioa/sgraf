@@ -14,7 +14,7 @@ Public Class Form1
         For Each sFile In arrayFileNames
             'ImageList.Images.Add(Bitmap.FromFile(file.FullName))
             Try
-                Dim imageItem As New userControlImg(Bitmap.FromFile(sFile), sFile, My.Settings.fotoLarghezzaTumb, My.Settings.fotoAltezzaTumb)
+                Dim imageItem As New userControlImg(Bitmap.FromFile(sFile), sFile, My.Settings.fotoLarghezzaThumb, My.Settings.fotoAltezzaThumb)
                 FlowLayoutPanel1.Controls.Add(imageItem)
             Catch ex As Exception
                 log.xlogWriteEntry("Inserimento immagine fallito - " & ex.Message, TraceEventType.Critical)
@@ -279,7 +279,9 @@ Public Class Form1
     End Sub
 
 
-    Dim ZoomValue As Integer
+    Dim ZoomValue As Integer = My.Settings.zoomMiniaturaDefaultMouse
+
+    'gestione mouse scroll - rotella mouse per zoom miniature
     Private Sub FlowLayoutPanel1_MouseWheel(sender As Object, e As MouseEventArgs) Handles FlowLayoutPanel1.MouseWheel
 
         'check if control is being held down
@@ -303,18 +305,31 @@ Public Class Form1
 
     End Sub
 
+    'modifica grandezza miniature (solo quelle mostrate a video)
+    Dim intNuovaAltezzaThumb As Integer
+    Dim intNuovaLarghezzaThumb As Integer
     Private Sub imgRedraw(zoomPercent As Double)
+        intNuovaAltezzaThumb = CInt(My.Settings.fotoAltezzaThumb * (1 + zoomPercent / 100))
+        intNuovaLarghezzaThumb = CInt(My.Settings.fotoLarghezzaThumb * (1 + zoomPercent / 100))
 
-        My.Settings.fotoAltezzaTumb = CInt(My.Settings.fotoAltezzaTumb * (1 + zoomPercent / 100))
-        My.Settings.fotoLarghezzaTumb = CInt(My.Settings.fotoLarghezzaTumb * (1 + zoomPercent / 100))
-        If (My.Settings.fotoAltezzaTumb > 200 And My.Settings.fotoLarghezzaTumb > 200) Then
+        If (intNuovaAltezzaThumb > 200 And intNuovaLarghezzaThumb > 200) Then
+            'se le nuove dimensioni rispettano i requisiti allora vengono salvate come predefinite
+            My.Settings.fotoAltezzaThumb = intNuovaAltezzaThumb
+            My.Settings.fotoLarghezzaThumb = intNuovaLarghezzaThumb
             For Each child As userControlImg In Me.FlowLayoutPanel1.Controls
-                child.Height = My.Settings.fotoAltezzaTumb
-                child.Width = My.Settings.fotoLarghezzaTumb
+                child.Height = My.Settings.fotoAltezzaThumb
+                child.Width = My.Settings.fotoLarghezzaThumb
             Next
         End If
 
     End Sub
 
+    Private Sub AumentaMiniatureCtrlScrollToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AumentaMiniatureCtrlScrollToolStripMenuItem.Click
+        imgRedraw(My.Settings.zoomMiniaturaDefaultMenu)
+    End Sub
+
+    Private Sub DiminuisciMiniatureCtrlScrollToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DiminuisciMiniatureCtrlScrollToolStripMenuItem.Click
+        imgRedraw(My.Settings.zoomMiniaturaDefaultMenu * (-1))
+    End Sub
 End Class
 
