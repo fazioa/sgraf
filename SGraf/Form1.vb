@@ -137,6 +137,11 @@ Public Class Form1
         form.ShowDialog()
     End Sub
 
+    Private Sub PreferenzeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PreferenzeToolStripMenuItem.Click
+        Dim form As New FPreferenze
+        form.ShowDialog()
+    End Sub
+
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'My.Settings.newVersion is set to True in the IDE
         If My.Settings.newVersion Then
@@ -331,5 +336,7 @@ Public Class Form1
     Private Sub DiminuisciMiniatureCtrlScrollToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DiminuisciMiniatureCtrlScrollToolStripMenuItem.Click
         imgRedraw(My.Settings.zoomMiniaturaDefaultMenu * (-1))
     End Sub
+
+
 End Class
 

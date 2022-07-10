@@ -4,7 +4,7 @@
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
-        ErrorProvider1.Container.Add(TextBox1)
+        '    ErrorProvider1.Container.Add(TextBox9)
         ' Add any initialization after the InitializeComponent() call.
     End Sub
 
@@ -22,4 +22,15 @@
         ' My.Settings.tipoFascicolo = DirectCast(ComboBoxTipoFascicolo.SelectedItem, String)
     End Sub
 
+    Private Sub TextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox9.KeyPress, TextBox15.KeyPress, TextBox11.KeyPress
+        '97 - 122 = Ascii codes for simple letters
+        '65 - 90  = Ascii codes for capital letters
+        '48 - 57  = Ascii codes for numbers
+
+        If Asc(e.KeyChar) <> 8 Then
+            If Asc(e.KeyChar) < 48 Or Asc(e.KeyChar) > 57 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
 End Class

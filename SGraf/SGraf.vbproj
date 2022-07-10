@@ -128,6 +128,12 @@
     <Compile Include="FPreferenze.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FSetup.Designer.vb">
+      <DependentUpon>FSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPreferenze.resx">
       <DependentUpon>FPreferenze.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSetup.resx">
+      <DependentUpon>FSetup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

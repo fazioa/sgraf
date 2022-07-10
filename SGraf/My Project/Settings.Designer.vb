@@ -212,7 +212,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
         Public Property disposizioneColonne() As String
             Get
                 Return CType(Me("disposizioneColonne"),String)
@@ -224,7 +224,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("3")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
         Public Property disposizioneRighe() As String
             Get
                 Return CType(Me("disposizioneRighe"),String)

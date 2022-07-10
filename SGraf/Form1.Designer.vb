@@ -36,12 +36,12 @@ Partial Class Form1
         Me.StrumentiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GeneraFascicoloFotograficoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpzioniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PreferenzeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SvuotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialogProject = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialogProject = New System.Windows.Forms.OpenFileDialog()
-        Me.PreferenzeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -133,6 +133,12 @@ Partial Class Form1
         Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
         Me.OpzioniToolStripMenuItem.Text = "Setup..."
         '
+        'PreferenzeToolStripMenuItem
+        '
+        Me.PreferenzeToolStripMenuItem.Name = "PreferenzeToolStripMenuItem"
+        Me.PreferenzeToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
+        Me.PreferenzeToolStripMenuItem.Text = "Preferenze..."
+        '
         'SvuotaToolStripMenuItem
         '
         Me.SvuotaToolStripMenuItem.Name = "SvuotaToolStripMenuItem"
@@ -165,12 +171,6 @@ Partial Class Form1
         Me.OpenFileDialogProject.DefaultExt = "sgraf"
         Me.OpenFileDialogProject.FileName = "project"
         Me.OpenFileDialogProject.Filter = "SGRAF projects (*.sgraf)|*.sgraf"
-        '
-        'PreferenzeToolStripMenuItem
-        '
-        Me.PreferenzeToolStripMenuItem.Name = "PreferenzeToolStripMenuItem"
-        Me.PreferenzeToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
-        Me.PreferenzeToolStripMenuItem.Text = "Preferenze..."
         '
         'Form1
         '
