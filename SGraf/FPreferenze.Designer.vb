@@ -55,6 +55,10 @@ Partial Class FPreferenze
         Me.CheckBoxNomeFile = New System.Windows.Forms.CheckBox()
         Me.CheckBoxMemorizzaDidascalia = New System.Windows.Forms.CheckBox()
         Me.ComboBoxTipoFascicolo = New System.Windows.Forms.ComboBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -78,7 +82,7 @@ Partial Class FPreferenze
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.TextBox13)
         Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 48)
+        Me.GroupBox1.Location = New System.Drawing.Point(15, 106)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(134, 98)
         Me.GroupBox1.TabIndex = 10
@@ -129,7 +133,7 @@ Partial Class FPreferenze
         Me.GroupBox2.Controls.Add(Me.Label11)
         Me.GroupBox2.Controls.Add(Me.TextBox9)
         Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Location = New System.Drawing.Point(280, 48)
+        Me.GroupBox2.Location = New System.Drawing.Point(283, 106)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(223, 98)
         Me.GroupBox2.TabIndex = 11
@@ -193,7 +197,7 @@ Partial Class FPreferenze
         Me.GroupBox3.Controls.Add(Me.Label18)
         Me.GroupBox3.Controls.Add(Me.TextBox17)
         Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Location = New System.Drawing.Point(152, 48)
+        Me.GroupBox3.Location = New System.Drawing.Point(155, 106)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(122, 98)
         Me.GroupBox3.TabIndex = 12
@@ -243,7 +247,7 @@ Partial Class FPreferenze
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(9, 20)
+        Me.Label20.Location = New System.Drawing.Point(12, 75)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(76, 13)
         Me.Label20.TabIndex = 35
@@ -360,7 +364,7 @@ Partial Class FPreferenze
         '
         Me.GroupBox6.Controls.Add(Me.GroupBox5)
         Me.GroupBox6.Controls.Add(Me.CheckBoxNomeFile)
-        Me.GroupBox6.Location = New System.Drawing.Point(12, 152)
+        Me.GroupBox6.Location = New System.Drawing.Point(15, 210)
         Me.GroupBox6.Name = "GroupBox6"
         Me.GroupBox6.Size = New System.Drawing.Size(361, 126)
         Me.GroupBox6.TabIndex = 40
@@ -386,7 +390,7 @@ Partial Class FPreferenze
         Me.CheckBoxMemorizzaDidascalia.Checked = Global.SGraf.My.MySettings.Default.bMemorizzaDidascalia
         Me.CheckBoxMemorizzaDidascalia.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxMemorizzaDidascalia.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Global.SGraf.My.MySettings.Default, "bMemorizzaDidascalia", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
-        Me.CheckBoxMemorizzaDidascalia.Location = New System.Drawing.Point(245, 19)
+        Me.CheckBoxMemorizzaDidascalia.Location = New System.Drawing.Point(248, 74)
         Me.CheckBoxMemorizzaDidascalia.Name = "CheckBoxMemorizzaDidascalia"
         Me.CheckBoxMemorizzaDidascalia.Size = New System.Drawing.Size(173, 17)
         Me.CheckBoxMemorizzaDidascalia.TabIndex = 36
@@ -398,17 +402,61 @@ Partial Class FPreferenze
         Me.ComboBoxTipoFascicolo.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "tipoFascicolo", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.ComboBoxTipoFascicolo.FormattingEnabled = True
         Me.ComboBoxTipoFascicolo.Items.AddRange(New Object() {"Descrittivo", "Identificazione"})
-        Me.ComboBoxTipoFascicolo.Location = New System.Drawing.Point(92, 17)
+        Me.ComboBoxTipoFascicolo.Location = New System.Drawing.Point(95, 72)
         Me.ComboBoxTipoFascicolo.Name = "ComboBoxTipoFascicolo"
         Me.ComboBoxTipoFascicolo.Size = New System.Drawing.Size(136, 21)
         Me.ComboBoxTipoFascicolo.TabIndex = 13
         Me.ComboBoxTipoFascicolo.Text = Global.SGraf.My.MySettings.Default.tipoFascicolo
         '
+        'TextBox5
+        '
+        Me.TextBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox5.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "contenutoDettaglio", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox5.Location = New System.Drawing.Point(166, 42)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(311, 20)
+        Me.TextBox5.TabIndex = 42
+        Me.TextBox5.Text = Global.SGraf.My.MySettings.Default.contenutoDettaglio
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 45)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(148, 13)
+        Me.Label5.TabIndex = 44
+        Me.Label5.Text = "Dettaglio contenuto fascicolo:"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox4.DataBindings.Add(New System.Windows.Forms.Binding("Text", Global.SGraf.My.MySettings.Default, "oggetto", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
+        Me.TextBox4.Location = New System.Drawing.Point(66, 16)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(411, 20)
+        Me.TextBox4.TabIndex = 41
+        Me.TextBox4.Text = Global.SGraf.My.MySettings.Default.oggetto
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 19)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(48, 13)
+        Me.Label4.TabIndex = 43
+        Me.Label4.Text = "Oggetto:"
+        '
         'FPreferenze
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(518, 291)
+        Me.ClientSize = New System.Drawing.Size(524, 350)
+        Me.Controls.Add(Me.TextBox5)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.CheckBoxMemorizzaDidascalia)
         Me.Controls.Add(Me.Label20)
@@ -465,4 +513,8 @@ Partial Class FPreferenze
     Friend WithEvents CheckBoxISO As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
     Friend WithEvents CheckBoxNomeFile As System.Windows.Forms.CheckBox
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label4 As Label
 End Class
